@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var reviewSchema = new Schema({
-	'user': Number,
+	'user': ObjectId,
 	'recipe': Number,
 	'rating': Number,
 	'text': String

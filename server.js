@@ -24,17 +24,23 @@ app.configure(function(){
 
 
 /* routes */
-/* hello world test */
+/* CRUD operations */
+app.post("/create_:model?", function(req, res) {
+	routes[req.params.model].create(req, res);
+});
+app.get("/read_:model?", function(req, res) {
+	routes[req.params.model].read(req, res);
+});
+app.post("/update_:model?", function(req, res) {
+	routes[req.params.model].update(req, res);
+});
+app.get("/destroy_:model?", function(req, res) {
+	routes[req.params.model].destroy(req, res);
+});
+/* hello world testing */
 app.get('/', function(req, res){
 	res.send('hello world');
 });
-/* crud operations */
-app.post('createUser', routes.user.create);
-app.get('removeUser', routes.user.remove);
-app.post('createRecipe', routes.recipe.create);
-app.get('removeRevipe', routes.recipe.remove);
-app.post('createReview', routes.review.create);
-app.get('removeReview', routes.review.remove);
 
 
 /* start 'er up */
