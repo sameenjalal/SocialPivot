@@ -1,7 +1,7 @@
 var User = require('../models/userModel.js'), 
 	bcrypt = require('bcrypt'),
 	mongoose = require('mongoose'),
-	ObjectId = mongoose.Type.ObjectId;
+	ObjectId = mongoose.Types.ObjectId;
 
 module.exports = {
 	

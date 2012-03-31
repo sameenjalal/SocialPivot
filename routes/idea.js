@@ -1,4 +1,6 @@
-var Idea = require("../models/ideaModel.js");
+var Idea = require("../models/ideaModel.js"),
+	mongoose = require('mongoose'),
+	ObjectId = mongoose.Types.ObjectId;
 
 module.exports = {
 	
