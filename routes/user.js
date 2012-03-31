@@ -1,4 +1,4 @@
-var User = require('../models/userModel.js'), 
+var User = require('../models/userModel.js'),
 	bcrypt = require('bcrypt'),
 	mongoose = require('mongoose'),
 	ObjectId = mongoose.Types.ObjectId;

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.ObjectId;
-var User = require( 'userModel.js' );
+var User = require('./userModel.js');
 
 var Schema = mongoose.Schema;
 
