@@ -18,7 +18,7 @@ module.exports = {
 						var salt = bcrypt.genSaltSync(10);
 						var newUser = new User({
 							'username': req.body.username,
-							'password': bcrypt.hashSync(req.body.password),
+							'password': bcrypt.hashSync(req.body.password, salt),
 							'pic': req.body.pic,
 							'info': req.body.info,
 							'timestamp': Date.now()
