@@ -10,7 +10,7 @@ module.exports = {
 	create :
 		function(req, res){
 			var my_user;
-			User.findOne( { "_id": req.body.user_id }, function( err, user ) {
+			User.findOne( { "_id": new ObjectId( req.body.user_id ) }, function( err, user ) {
 				if( err ){
 					var response = {
 						status: "Error",
@@ -29,7 +29,7 @@ module.exports = {
 			}
 
 			var my_idea;
-			Idea.findOne( { "_id": req.body.idea_id }, function( err, idea ) {
+			Idea.findOne( { "_id": new ObjectId( req.body.idea_id ) }, function( err, idea ) {
 				if( err ){
 					var response = {
 						status: "Error",
