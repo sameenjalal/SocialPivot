@@ -1,4 +1,6 @@
-var Comment = require("../models/commentModel.js");
+var Comment = require("../models/commentModel.js"),
+	mongoose = require('mongoose'),
+	ObjectId = mongoose.Types.ObjectId;
 
 module.exports = {
 	
@@ -6,7 +8,10 @@ module.exports = {
 		function(req, res){
 			var newComment = new Comment({
 				'user': new ObjectId(req.body.user),
-				'idea': new ObjectId(req.body.idea),
+				'idea': {
+					id: new ObjectId(req.body.idea.id),
+					name: req.body.idea.name
+				},
 				'rating': req.body.rating,
 				'text': req.body.text,
 				'timestamp': Date.now()
