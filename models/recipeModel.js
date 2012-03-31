@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var recipeSchema = new Schema({
 	'recipe': Object,
 	'prev': Number,
-	'owner': Number,
+	'owner': ObjectId,
 	'name': String
 });
 

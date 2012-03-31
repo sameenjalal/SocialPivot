@@ -2,11 +2,11 @@ module.exports = {
 	
 	create :
 		function(req, res){
-		
+			
 		},
 	
 	
-	remove :
+	read :
 		function(req, res){
 		
 		},
