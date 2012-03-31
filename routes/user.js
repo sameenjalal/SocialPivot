@@ -1,13 +1,15 @@
 var User = require('../models/userModel.js'), 
 	bcrypt = require('bcrypt'),
 	ObjectId = mongoose.Type.ObjectId;
+
 module.exports = {
 	
 	create :
 		function(req, res){
+			var response;
 			User.findOne({username: req.body.username}, function(err, doc) {
 				if(err) {
-					var response = {
+					response = {
 						status: 'Error',
 						data: err
 					};
@@ -18,9 +20,9 @@ module.exports = {
 							'username': req.body.username,
 							'password': bcrypt.hashSync(req.body.password),
 							'pic': req.body.pic,
-							'info': req.body.info;
+							'info': req.body.info
 						});
-						var response = {
+						response = {
 							status: 'Success',
 							data: newUser._id
 						};
@@ -33,7 +35,7 @@ module.exports = {
 							}
 						});
 					} else {
-						var response = {
+						response = {
 							status: 'Failure',
 							data: 'A user with this username already exists'
 						};
@@ -46,20 +48,21 @@ module.exports = {
 	
 	read :
 		function(req, res){
-			User.find(req.body.userParams, req.body.userFields, function(err, docs) {
+			var response;
+			User.find(req.body.params, req.body.fields, function(err, docs) {
 				if(err) {
-					var response = {
+					esponse = {
 						status: 'Error',
 						data: err
 					};
 				} else {
 					if(docs !== null) {
-						var response = {
+						response = {
 							status: 'Success',
 							data: docs
 						};
 					} else {
-						var response = {
+						response = {
 							status: 'Failure',
 							data: 'No documents were found matching this request'
 						};
@@ -72,14 +75,15 @@ module.exports = {
 	
 	update :
 		function(req, res){
-			User.update({_id: new ObjectId(req.body.id), req.body.update, req.body.option function(err, numAffected) {
+			var response;
+			User.update({_id: new ObjectId(req.body.id)}, req.body.update, req.body.options, function(err, numAffected) {
 				if(err) {
-					var response = {
+					response = {
 						status: 'Error',
 						data: err
 					};
 				} else {
-					var response = {
+					response = {
 						status: 'Success',
 						data: numAffected
 					};
@@ -90,20 +94,21 @@ module.exports = {
 
 	destroy :
 		function(req, res){
+			var response;
 			User.findById(req.body.id, function(err, doc) {
 				if(err) {
-					var response = {
+					response = {
 						status: 'Error',
 						data: err
 					};
 				} else {
 					if(doc !== null) {
 						doc.remove();
-						var response = {
-							status: 'Success',
+						response = {
+							status: 'Success'
 						};
 					} else {
-						var response {
+						response = {
 							status: 'Failure',
 							data: 'No user with this ObjectId exists'
 						};
@@ -112,4 +117,4 @@ module.exports = {
 			});
 			res.send(response);
 		}
-}
+};

@@ -43,7 +43,7 @@ module.exports = {
 	
 	update :
 		function(req, res){
-			Review.update({_id: new ObjectId(req.body.id), req.body.update, req.body.option function(err, numAffected) {
+			Review.update({_id: new ObjectId(req.body.id)}, req.body.update, req.body.option, function(err, numAffected) {
 				if(err) {
 					var response = {
 						status: 'Error',
