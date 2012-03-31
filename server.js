@@ -20,7 +20,14 @@ app.configure(function(){
 
 
 /* routes */
+app.get('/', function(req, res){
+	res.sent('hello world');
+});
 app.post('createUser', routes.user.create);
+app.get('removeUser', routes.user.remove);
+
+
+
 
 
 /* start 'er up */
