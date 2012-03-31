@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var reviewSchema = new Schema({
 	'user': ObjectId,
-	'recipe': Number,
+	'recipe': ObjectId,
 	'rating': Number,
 	'text': String
 });
