@@ -1,5 +1,6 @@
 var User = require('../models/userModel.js'), 
 	bcrypt = require('bcrypt'),
+	mongoose = require('mongoose');
 	ObjectId = mongoose.Type.ObjectId;
 
 module.exports = {
@@ -25,7 +26,7 @@ module.exports = {
 						});
 						response = {
 							status: 'Success',
-							data: newUser._id
+							data: new User._id
 						};
 						newUser.save(function(err) {
 							if(err) {

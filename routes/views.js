@@ -10,12 +10,12 @@ function internalError(res, err){
 	res.end('Internal Server Error!');
 }
 
-function sortChrono(event1, event2) {
-	if(event1.timetamp < event2.timetamp) {
+function sortChrono(event1, event2){
+	if(event1.date < event2.date){
 		return 1;
-	} else if(event1.timetamp > event2.timetamp) {
+	else if(event1.date > event2.date){
 		return -1;
-	} else {
+	else{
 		return 0;
 	}
 }
@@ -23,7 +23,7 @@ function sortChrono(event1, event2) {
 /* exported functions */
 module.exports = {
 
-	404 : 
+	notfound : 
 		function(req, res){
 			res.writeHead(404);
 			res.end('request not found');
@@ -66,52 +66,8 @@ module.exports = {
 	/* renders the search view for a given query */
 	searchView :
 		function(req, res){
-			var search_terms = req.query.search_terms;
-			var search_terms_list = search_terms.split( "\\s+" );
-
-			var docs_list_ideas = [];
-			Idea.find({ 'name': { $in: search_terms_list } }, function( err, ideas ){
-				if( err ){
-					internalError( res, err );
-				} else if( ideas !== null ) {
-					docs_list_ideas = ideas;
-				}
-			});
-
-			var docs_list_comments = [];
-			Comment.find({ 'text': { $in: search_terms_list } }, function( err, comments ){
-				if( err ){
-					internalError( res, err );
-				} else if( comment !== null ) {
-					docs_list_comments = comments;
-				}
-			});
-
-			var docs_list_userinfo = [];
-			User.find({ 'info': { $in: search_terms_list } }, function( err, userinfo ){
-				if( err ){
-					internalError( res, err );
-				} else if( userinfo !== null ) {
-					docs_list_userinfo = userinfo;
-				}
-			});
-
-			var docs_list_user = [];
-			User.find({ 'username': { $in: search_terms_list } }, function( err, user ){
-				if( err ){
-					internalError( res, err );
-				} else if( user !== null ) {
-					docs_list_user = user;
-				}
-			});
-
-			var master_docs_list = docs_list_ideas.concat( docs_list_comments, docs_list_userinfo, docs_list_user );
-			var sorted_master_list = master_docs_list.sort( sortChrono );
-
-			/* render user profile */
-			res.render('searchView.ejs', {
-				search_terms : sorted_master_list.splice(0, 10)
-			});
+			
+						 
 		},
 
 
