@@ -11,26 +11,31 @@ module.exports = {
 				'name': req.body.name
 			});
 			newRecipe.save();
-			res.send(true);
+			var response = {
+				status: "Success",
+				data: "Just created a recipe"
+			};
+			res.send( response );
 		},
 	
 	
 	read :
 		function(req, res){
-			Recipe.find(req.body.userParams, req.body.userFields, function(err, docs) {
+			Recipe.find(req.body.params, req.body.fields, function(err, docs) {
+				var response;
 				if( err ) {
-					var response = {
+					response = {
 						status: "Error",
 						data: err
 					};
 				} else {
 					if( docs === null ) {
-						var response = {
+						response = {
 							status: "Failure",
 							data: "Fuck you, from read"
 						};
 					} else {
-						var response = {
+						response = {
 							status: "Success",
 							data: docs
 						};
@@ -43,14 +48,15 @@ module.exports = {
 	
 	update :
 		function(req, res){
-			Recipe.update({_id: new ObjectId(req.body.id), req.body.update, req.body.option function(err, numAffected) {
+			Recipe.update({_id: new ObjectId(req.body.id)}, req.body.update, req.body.option, function(err, numAffected) {
+				var response;
 				if(err) {
-					var response = {
+					response = {
 						status: 'Error',
 						data: err
 					};
 				} else {
-					var response = {
+					response = {
 						status: 'Success',
 						data: numAffected
 					};
@@ -63,19 +69,20 @@ module.exports = {
 	destroy :
 		function(req, res){
 			Recipe.findById( req.body.id, function( err, docs ) {
+				var response;
 				if( err ) {
-					var response = {
+					response = {
 						status: "Error",
 						data: err
 					};
 				} else {
 					if( docs === null ) {
-						var response = {
+						response = {
 							status: "Failure",
 							data: false
 						};
 					} else {
-						var response = {
+						response = {
 							status: "Success",
 							data: true
 						};
@@ -85,4 +92,4 @@ module.exports = {
 			});
 			res.send( response );
 		}
-}
+};

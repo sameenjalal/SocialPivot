@@ -11,26 +11,31 @@ module.exports = {
 				'text': req.body.text
 			});
 			newReview.save();
-			res.send(true);
+			var response = {
+				status: "Success",
+				data: "Just created a review"
+			};
+			res.send( response );
 		},
 	
 	
 	read :
 		function(req, res){
-			Review.find(req.body.userParams, req.body.userFields, function(err, docs) {
+			Review.find(req.body.params, req.body.fields, function(err, docs) {
+				var response;
 				if( err ) {
-					var response = {
+					response = {
 						status: "Error",
 						data: err
 					};
 				} else {
 					if( docs === null ) {
-						var response = {
+						response = {
 							status: "Failure",
 							data: "Fuck you, from read"
 						};
 					} else {
-						var response = {
+						response = {
 							status: "Success",
 							data: docs
 						};
@@ -44,13 +49,14 @@ module.exports = {
 	update :
 		function(req, res){
 			Review.update({_id: new ObjectId(req.body.id)}, req.body.update, req.body.option, function(err, numAffected) {
+				var response;
 				if(err) {
-					var response = {
+					response = {
 						status: 'Error',
 						data: err
 					};
 				} else {
-					var response = {
+					response = {
 						status: 'Success',
 						data: numAffected
 					};
@@ -63,26 +69,27 @@ module.exports = {
 	destroy :
 		function(req, res){
 			Review.findById(req.body.id, function( err, docs ) {
+				var response;
 				if( err ) {
-					var response = {
+					response = {
 						status: "Error",
 						data: err
 					};
 				} else {
 					if( docs === null ) {
-						var response = {
+						response = {
 							status: "Failure",
 							data: "Fuck you from review destroy"
 						};
 					} else {
-						var response = {
+						response = {
 							status: "Success",
 							data: true
 						};
 						docs.remove();
 					}
 				}
-				res.send( true );
-			}
+				res.send( response );
+			});
 		}
-}
+};
