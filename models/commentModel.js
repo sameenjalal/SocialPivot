@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.ObjectId;
 var Schema = mongoose.Schema;
+var User = require( 'userModel.js' );
+var User = require( 'ideaModel.js' );
 
 var commentSchema = new Schema({
-	'user': ObjectId,
-	'idea': {},
+	'user': User,
+	'idea': Idea,
 	'rating': Number,
 	'text': String,
 	'timestamp': Date
