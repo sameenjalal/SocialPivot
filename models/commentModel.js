@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
-
+var ObjectId = mongoose.Schema.ObjectId;
 var Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
 	'user': ObjectId,
-	'idea': Object,
+	'idea': {},
 	'rating': Number,
 	'text': String,
 	'timestamp': Date

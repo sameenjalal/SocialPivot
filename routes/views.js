@@ -25,11 +25,11 @@ function internalError(res, err){
 }
 
 function sortChrono(event1, event2){
-	if(event1.date < event2.date){
+	if(event1.timestamp < event2.timestamp){
 		return 1;
-	else if(event1.date > event2.date){
+	}else if(event1.timestamp > event2.timestamp){
 		return -1;
-	else{
+	}else{
 		return 0;
 	}
 }
@@ -41,7 +41,7 @@ module.exports = {
 		function(req, res){
 			res.writeHead(404);
 			res.end('request not found');
-		}
+		},
 
 	/* renders the idea view for a :ideaID that corrosponds to db ID */
 	ideaView :
