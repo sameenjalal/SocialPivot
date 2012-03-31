@@ -3,7 +3,6 @@ var port = process.env.PORT || 4242;
 
 /* requires */
 var express = require("express");
-var routes = require("./routes/routes.js");
 
 
 /* create server */
@@ -21,7 +20,7 @@ app.configure(function(){
 
 
 /* routes */
-app.get('/', routes.helloworld);
+app.post('createUser', routes.user.create);
 
 
 /* start 'er up */
