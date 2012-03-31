@@ -1,24 +1,24 @@
 var Comment = require("../models/commentModel.js"),
 	mongoose = require('mongoose'),
-	ObjectId = mongoose.Types.ObjectId;
-
-var User = require( "../models/userModel.js" );
-var Idea = require( "../models/ideaModel.js" );
+	ObjectId = mongoose.Types.ObjectId,
+	User = require( "../models/userModel.js" ),
+	Idea = require( "../models/ideaModel.js" );
 
 module.exports = {
 	
 	create :
 		function(req, res){
 			var my_user;
+			var response;
 			User.findOne( { "_id": new ObjectId( req.body.user_id ) }, function( err, user ) {
 				if( err ){
-					var response = {
+					response = {
 						status: "Error",
 						data: err
 					};
 					res.send( response );
 				} else if( user !== null ) {
-					var response = {
+					response = {
 						status: "Failure",
 						data: user
 					};
@@ -26,18 +26,18 @@ module.exports = {
 				} else {
 					my_user = user;
 				}
-			}
+			});
 
 			var my_idea;
 			Idea.findOne( { "_id": new ObjectId( req.body.idea_id ) }, function( err, idea ) {
 				if( err ){
-					var response = {
+					response = {
 						status: "Error",
 						data: err
 					};
 					res.send( response );
 				} else if( idea !== null ) {
-					var response = {
+					response = {
 						status: "Failure",
 						data: idea
 					};
@@ -45,7 +45,7 @@ module.exports = {
 				} else {
 					my_idea = idea;
 				}
-			}
+			});
 
 			var newComment = new Comment({
 				'user': my_user,
@@ -55,7 +55,7 @@ module.exports = {
 				'timestamp': Date.now()
 			});
 			newComment.save();
-			var response = {
+			response = {
 				status: "Success",
 				data: "Just created a comment"
 			};

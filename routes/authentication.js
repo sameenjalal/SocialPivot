@@ -5,8 +5,8 @@ var User = require('../models/userModel.js'),
 module.exports = {
 	login:
 		function(req, res) {
-			var username = req.body.username;
-			User.findOne({username: username}, function (err, doc)) {
+			var usrname = req.body.username;
+			User.findOne({ "username": usrname}, function (err, doc) {
 				if(err) {
 					res.redirect('/');
 				} else {
@@ -26,7 +26,7 @@ module.exports = {
 						res.redirect('/');
 					}
 				}
-			}
+			});
 		},
 
 	logout:
@@ -36,4 +36,4 @@ module.exports = {
 			}
 			res.redirect('/');
 		}
-}
+};
