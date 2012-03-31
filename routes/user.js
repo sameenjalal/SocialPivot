@@ -1,5 +1,6 @@
 var User = require('../models/userModel.js'), 
-	bcrypt = require('bcrypt')
+	bcrypt = require('bcrypt'),
+	ObjectId = mongoose.Type.ObjectId;
 module.exports = {
 	
 	create :
@@ -9,7 +10,7 @@ module.exports = {
 					var response = {
 						status: 'Error',
 						data: err
-					}
+					};
 				} else {
 					if(doc === null) {
 						var salt = bcrypt.genSaltSync(10);
@@ -21,7 +22,7 @@ module.exports = {
 						});
 						var response = {
 							status: 'Success',
-							userId: newUser._id
+							data: newUser._id
 						};
 						newUser.save(function(err) {
 							if(err) {
@@ -35,7 +36,7 @@ module.exports = {
 						var response = {
 							status: 'Failure',
 							data: 'A user with this username already exists'
-						}
+						};
 					}
 				}
 				res.send(response);
@@ -45,13 +46,45 @@ module.exports = {
 	
 	read :
 		function(req, res){
-
+			User.find(req.body.userParams, req.body.userFields, function(err, docs) {
+				if(err) {
+					var response = {
+						status: 'Error',
+						data: err
+					};
+				} else {
+					if(docs !== null) {
+						var response = {
+							status: 'Success',
+							data: docs
+						};
+					} else {
+						var response = {
+							status: 'Failure',
+							data: 'No documents were found matching this request'
+						};
+					}
+				}
+			});
+			res.send(response);
 		},
 	
 	
 	update :
 		function(req, res){
-			
+			User.update({_id: new ObjectId(req.body.id), req.body.update, req.body.option function(err, numAffected) {
+				if(err) {
+					var response = {
+						status: 'Error',
+						data: err
+					};
+				} else {
+					var response = {
+						status: 'Success',
+						data: numAffected
+					};
+				}
+			});
 		},
 
 
@@ -62,7 +95,7 @@ module.exports = {
 					var response = {
 						status: 'Error',
 						data: err
-					}
+					};
 				} else {
 					if(doc !== null) {
 						doc.remove();
