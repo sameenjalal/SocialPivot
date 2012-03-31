@@ -1,7 +1,7 @@
 /* requires */
-User = require('../models/userModel.js');
-Idea = require('../models/ideaModel.js');
-Comment = require('../models/commentModel.js');
+var User = require('../models/userModel.js'),
+	Idea = require('../models/ideaModel.js'),
+	Comment = require('../models/commentModel.js');
 
 
 function internalError(res, err){
@@ -22,6 +22,12 @@ function sortChrono(event1, event2){
 
 /* exported functions */
 module.exports = {
+
+	404 : 
+		function(req, res){
+			res.writeHead(404);
+			res.end('request not found');
+		}
 
 	/* renders the idea view for a :ideaID that corrosponds to db ID */
 	ideaView :
@@ -66,9 +72,35 @@ module.exports = {
 
 
 	/* renders the feed view for most recent activity */
+	/* TODO this is bad, currently pullng everything and then sorting */
 	feedView :
 		function(req, res){
-
+			
+			/* find all the ideas */
+			Ideas.find({}, function(err, ideas){
+				if(err){
+					internalServerError(res, err);
+				}else{
+					
+					/* find all the comments */
+					Comment.find({}, function(err, comments){
+						if(err){
+							internalServerError(res, ideas);
+						}else{
+							
+							/* sort and render */
+							var activity = [];
+							activity.push(ideas);
+							activity.push(comments);
+							activity.sort(sortChrono);
+							activity.splice(0, 20);
+							res.render('feedView.ejs', {
+								activity: activity
+							});
+						}
+					});
+				}
+			});
 		},
 
 

@@ -28,16 +28,32 @@ app.configure(function(){
 
 /* CRUD operations on models */
 app.post("/create_:model?", function(req, res) {
-	routes[req.params.model].create(req, res);
+	if(!req.params.mode){
+		routes[req.params.model].create(req, res);
+	}else{
+		routes.views.404(req, res);
+	}
 });
 app.get("/read_:model?", function(req, res) {
-	routes[req.params.model].read(req, res);
+	if(!req.params.mode){
+		routes[req.params.model].read(req, res);
+	}else{
+		routes.views.404(req, res);
+	}
 });
 app.post("/update_:model?", function(req, res) {
-	routes[req.params.model].update(req, res);
+	if(!req.params.mode){
+		routes[req.params.model].update(req, res);
+	}else{
+		routes.views.404(req, res);
+	}	
 });
 app.get("/destroy_:model?", function(req, res) {
-	routes[req.params.model].destroy(req, res);
+	if(!req.params.mode){
+		routes[req.params.model].destroy(req, res);
+	}else{
+		routes.views.404(req, res);
+	}	
 });
 
 /* views */
