@@ -20,7 +20,7 @@ app.configure(function(){
 });
 
 
-/* CRUD */
+/* routes */
 app.get('/', routes.helloworld);
 
 
