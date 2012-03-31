@@ -5,9 +5,9 @@ var port = process.env.PORT || 4242;
 var express = require("express");
 var routes = {
 	user : require('./routes/user.js'),
-	recipe : require('./routes/recipe.js'),
-	review : require('./routes/review.js'),
-	views : require('./routes/views.js'),
+	idea : require('./routes/idea.js'),
+	comment : require('./routes/comment.js'),
+	views : require('./routes/views.js')
 };
 
 /* create server */
@@ -42,7 +42,7 @@ app.get("/destroy_:model?", function(req, res) {
 
 /* views */
 app.get("/profile/:username", routes.views.profile);
-app.get("/recipie/:recipieID", routes.views.recipe);
+app.get("/idea/:ideaID", routes.views.idea);
 app.get("/search?", routes.views.search);
 
 /* hello world testing */
