@@ -22,19 +22,20 @@ module.exports = {
 	read :
 		function(req, res){
 			Recipe.find(req.body.params, req.body.fields, function(err, docs) {
+				var response;
 				if( err ) {
-					var response = {
+					response = {
 						status: "Error",
 						data: err
 					};
 				} else {
 					if( docs === null ) {
-						var response = {
+						response = {
 							status: "Failure",
 							data: "Fuck you, from read"
 						};
 					} else {
-						var response = {
+						response = {
 							status: "Success",
 							data: docs
 						};
@@ -48,13 +49,14 @@ module.exports = {
 	update :
 		function(req, res){
 			Recipe.update({_id: new ObjectId(req.body.id)}, req.body.update, req.body.option, function(err, numAffected) {
+				var response;
 				if(err) {
-					var response = {
+					response = {
 						status: 'Error',
 						data: err
 					};
 				} else {
-					var response = {
+					response = {
 						status: 'Success',
 						data: numAffected
 					};
@@ -67,19 +69,20 @@ module.exports = {
 	destroy :
 		function(req, res){
 			Recipe.findById( req.body.id, function( err, docs ) {
+				var response;
 				if( err ) {
-					var response = {
+					response = {
 						status: "Error",
 						data: err
 					};
 				} else {
 					if( docs === null ) {
-						var response = {
+						response = {
 							status: "Failure",
 							data: false
 						};
 					} else {
-						var response = {
+						response = {
 							status: "Success",
 							data: true
 						};
@@ -89,4 +92,4 @@ module.exports = {
 			});
 			res.send( response );
 		}
-}
+};
