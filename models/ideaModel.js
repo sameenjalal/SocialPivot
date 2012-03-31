@@ -6,7 +6,8 @@ var ideaSchema = new Schema({
 	'idea': Object,
 	'prev': ObjectId,
 	'owner': ObjectId,
-	'name': String
+	'name': String,
+	'timestamp': Date
 });
 
 module.exports = mongoose.model('Idea', ideaSchema);

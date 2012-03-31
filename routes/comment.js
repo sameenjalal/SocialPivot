@@ -8,7 +8,8 @@ module.exports = {
 				'user': new ObjectId(req.body.user),
 				'recipe': new ObjectId(req.body.recipe),
 				'rating': req.body.rating,
-				'text': req.body.text
+				'text': req.body.text,
+				'timestamp': Date.now()
 			});
 			newComment.save();
 			var response = {

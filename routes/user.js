@@ -20,7 +20,8 @@ module.exports = {
 							'username': req.body.username,
 							'password': bcrypt.hashSync(req.body.password),
 							'pic': req.body.pic,
-							'info': req.body.info
+							'info': req.body.info,
+							'timestamp': Date.now()
 						});
 						response = {
 							status: 'Success',
