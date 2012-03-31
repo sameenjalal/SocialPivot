@@ -6,7 +6,8 @@ var express = require("express");
 var routes = {
 	user : require('./routes/user.js'),
 	recipe : require('./routes/recipe.js'),
-	review : require('./routes/review.js')
+	review : require('./routes/review.js'),
+	views : require('./routes/views.js'),
 };
 
 /* create server */
@@ -24,7 +25,8 @@ app.configure(function(){
 
 
 /* routes */
-/* CRUD operations */
+
+/* CRUD operations on models */
 app.post("/create_:model?", function(req, res) {
 	routes[req.params.model].create(req, res);
 });
@@ -37,6 +39,12 @@ app.post("/update_:model?", function(req, res) {
 app.get("/destroy_:model?", function(req, res) {
 	routes[req.params.model].destroy(req, res);
 });
+
+/* views */
+app.get("/profile/:username", routes.views.user);
+app.get("/recipie/:recipieID", routes.views.recipe);
+app.get("/search?", routes.views.search);
+
 /* hello world testing */
 app.get('/', function(req, res){
 	res.send('hello world');
