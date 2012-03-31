@@ -41,7 +41,7 @@ app.get("/destroy_:model?", function(req, res) {
 });
 
 /* views */
-app.get("/profile/:username", routes.views.user);
+app.get("/profile/:username", routes.views.profile);
 app.get("/recipie/:recipieID", routes.views.recipe);
 app.get("/search?", routes.views.search);
 
