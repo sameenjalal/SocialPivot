@@ -2,16 +2,54 @@ var Comment = require("../models/commentModel.js"),
 	mongoose = require('mongoose'),
 	ObjectId = mongoose.Types.ObjectId;
 
+var User = require( "../models/userModel.js" );
+var Idea = require( "../models/ideaModel.js" );
+
 module.exports = {
 	
 	create :
 		function(req, res){
+			var my_user;
+			User.findOne( { "_id": req.body.user_id }, function( err, user ) {
+				if( err ){
+					var response = {
+						status: "Error",
+						data: err
+					};
+					res.send( response );
+				} else if( user !== null ) {
+					var response = {
+						status: "Failure",
+						data: user
+					};
+					res.send( response );
+				} else {
+					my_user = user;
+				}
+			}
+
+			var my_idea;
+			Idea.findOne( { "_id": req.body.idea_id }, function( err, idea ) {
+				if( err ){
+					var response = {
+						status: "Error",
+						data: err
+					};
+					res.send( response );
+				} else if( idea !== null ) {
+					var response = {
+						status: "Failure",
+						data: idea
+					};
+					res.send( response );
+				} else {
+					my_idea = idea;
+				}
+			}
+
 			var newComment = new Comment({
-				'user': new ObjectId(req.body.user),
-				'idea': {
-					id: new ObjectId(req.body.idea.id),
-					name: req.body.idea.name
-				},
+				'user': my_user,
+				'idea': my_idea,
 				'rating': req.body.rating,
 				'text': req.body.text,
 				'timestamp': Date.now()
@@ -26,8 +64,8 @@ module.exports = {
 	
 	
 	read :
-		function(req, res){
-			Comment.find(req.body.params, req.body.fields, function(err, docs) {
+		function( req, res ) {
+			Comment.find( req.body.params, req.body.fields, function( err, docs ) {
 				var response;
 				if( err ) {
 					response = {
