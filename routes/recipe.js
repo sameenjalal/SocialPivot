@@ -11,13 +11,17 @@ module.exports = {
 				'name': req.body.name
 			});
 			newRecipe.save();
-			res.send(true);
+			var response = {
+				status: "Success",
+				data: "Just created a recipe"
+			};
+			res.send( response );
 		},
 	
 	
 	read :
 		function(req, res){
-			Recipe.find(req.body.userParams, req.body.userFields, function(err, docs) {
+			Recipe.find(req.body.params, req.body.fields, function(err, docs) {
 				if( err ) {
 					var response = {
 						status: "Error",
@@ -43,7 +47,7 @@ module.exports = {
 	
 	update :
 		function(req, res){
-			Recipe.update({_id: new ObjectId(req.body.id), req.body.update, req.body.option function(err, numAffected) {
+			Recipe.update({_id: new ObjectId(req.body.id)}, req.body.update, req.body.option, function(err, numAffected) {
 				if(err) {
 					var response = {
 						status: 'Error',
