@@ -24,14 +24,17 @@ app.configure(function(){
 
 
 /* routes */
+/* hello world test */
 app.get('/', function(req, res){
 	res.send('hello world');
 });
+/* crud operations */
 app.post('createUser', routes.user.create);
 app.get('removeUser', routes.user.remove);
-
-
-
+app.post('createRecipe', routes.recipe.create);
+app.get('removeRevipe', routes.recipe.remove);
+app.post('createReview', routes.review.create);
+app.get('removeReview', routes.review.remove);
 
 
 /* start 'er up */
