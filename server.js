@@ -1,5 +1,5 @@
 /* enviroment */
-var port = process.env.PORT || 4242
+var port = process.env.PORT || 4242;
 
 /* requires */
 var express = require("express");
