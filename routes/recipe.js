@@ -6,8 +6,8 @@ module.exports = {
 		function(req, res){
 			var newRecipe = new Recipe({
 				'recipe': req.body.recipe,
-				'prev': req.body.prev,
-				'owner': req.body.owner,
+				'prev': new ObjectId(req.body.prev),
+				'owner': new ObjectId(req.body.owner),
 				'name': req.body.name
 			});
 			newRecipe.save();
@@ -18,7 +18,7 @@ module.exports = {
 	read :
 		function(req, res){
 			var recipe_id = req.body.recipe;
-			Recipe.find({'id':req.body.id}, function( err, docs ) {
+			Recipe.findById(req.body.id, function( err, docs ) {
 				if( err ) {
 					var response = {
 						status: "Error",
@@ -50,8 +50,7 @@ module.exports = {
 
 	destroy :
 		function(req, res){
-			var recipe_id = req.body.id;
-			Recipe.find( {'id': new ObjectId(recipe_id)}, function( err, docs ) {
+			Recipe.findById( req.body.id, function( err, docs ) {
 				if( err ) {
 					var response = {
 						status: "Error",
