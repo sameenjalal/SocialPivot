@@ -1,42 +1,45 @@
-<%- partial('header.ejs') %>
+<%- partial('header.ejs', {user: user}) %>
+
 <div class="container">
 	<div class="row">
 		<div class="span12">
 			<div class="hero-unit">
 				<h1>Pivot</h1>
-				<p>Share, Fork and Contribute to great ideas from great people.</p>
+				<p>Share, Pivot and Contribute to great ideas from great people.</p>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="span4">
 			<div class="well padded-well">
-				<h2>Sign in with Netflix</h2>
-				<img src="http://flixxit.slamwhale.com/public/img/netflix.png"/>
-				<p>Getting started here is incredibly easy. Just sign in with your Netflix account, and you're good to go. It really is as simple as that. You'll find that we don't care much for formalities here. Your time is worth a lot here.</p>
+				<h2>Share great Ideas</h2>
+				<img src="../public/img/ideas.jpg"/>
+				<p>Sign up and start sharing all the great ideas you've ever had with Pivot.  Whether its the next Facebook, a solid business plan. or just an idea for a trip to somewhere awesome, we can't wait to hear it.</p>
 			</div>
 		</div>
 		<div class="span4">
 			<div class="well padded-well">
-				<h2>Share with others</h2>
-				<img src="http://flixxit.slamwhale.com/public/img/share.png"/>
-				<p>Watching an exciting moment is great and all, but sharing that moment with others is where the fun really happens. Our platform connects you with just the sort of people you would want to share it with.</p>
+				<h2>Pivot great Ideas</h2>
+				<img src="../public/img/pivot.jpg"/>
+				<p>See an idea that could be destined for greatness if it was just pushed in the right direction?  Pivot from the original idea and make it your own.  Who knows maybe you were right!</p>
 			</div>
 		</div>
 		<div class="span4">
 			<div class="well padded-well">
-				<h2>Theaters</h2>
-				<img src="http://flixxit.slamwhale.com/public/img/theater.png" />
-				<p>Theaters are portals to new and wonderful content. Rather than let some machine decide what's best for you, we bring you recommendations from those that share your interests.</p>
+				<h2>Work with great People</h2>
+				<img src="../public/img/share.jpg" />
+				<p>Comment on ideas you think truly shine and have people do the same for you.  By working together, we can help everyone's ideas be the best they can be.</p>
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<h1>Register Today!</h1>
+		<form class="well form-inline" action="/register" method="post">
+			<input type="text" name="username" placeholder="Username" />
+			<input type="text" name="password" placeholder="Password" />
+			<input type="submit" value="Sign Up" />
+		</form>
+	</div>
 </div>
-<h1>Register Today!</h1>
-<form class="well form-inline" action="register" method="post">
-	<input type="text" name="username" placeholder="Username" />
-	<input type="text" name="password" placeholder="Password" />
-	<input type="submit" value="Sign Up" />
-</form>
 
 <- partial('footer.ejs') %>
