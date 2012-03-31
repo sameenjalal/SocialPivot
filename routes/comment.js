@@ -6,7 +6,7 @@ module.exports = {
 		function(req, res){
 			var newComment = new Comment({
 				'user': new ObjectId(req.body.user),
-				'recipe': new ObjectId(req.body.recipe),
+				'idea': new ObjectId(req.body.idea),
 				'rating': req.body.rating,
 				'text': req.body.text,
 				'timestamp': Date.now()

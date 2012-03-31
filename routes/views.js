@@ -3,6 +3,20 @@ var User = require('../models/userModel.js'),
 	Idea = require('../models/ideaModel.js'),
 	Comment = require('../models/commentModel.js');
 
+function loginStatus(req) {
+	var session;
+	if(req.session) {
+		session = {
+			user: req.session.user,
+			logged_in: true
+		};
+	} else {
+		session = {
+			logged_in: false
+		};
+	}
+	return session;
+}
 
 function internalError(res, err){
 	console.log('Error : '+err);
@@ -54,7 +68,8 @@ module.exports = {
 							/* render the view */
 							res.render(idea, {
 								idea : idea, 
-								comments : comments
+								comments : comments,
+								session: loginStatus(req)
 							});
 						}
 					});
@@ -110,7 +125,8 @@ module.exports = {
 
 			/* render user profile */
 			res.render('searchView.ejs', {
-				search_terms : sorted_master_list.splice(0, 10)
+				search_terms : sorted_master_list.splice(0, 10),
+				session: loginStatus(req)
 			});
 		},
 
@@ -139,7 +155,8 @@ module.exports = {
 							activity.sort(sortChrono);
 							activity.splice(0, 20);
 							res.render('feedView.ejs', {
-								activity: activity
+								activity: activity,
+								session: loginStatus(req)
 							});
 						}
 					});
