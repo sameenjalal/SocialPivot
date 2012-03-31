@@ -6,12 +6,6 @@ module.exports = {
 		},
 	
 	
-	remove :
-		function(req, res){
-		
-		},
-	
-	
 	update :
 		function(req, res){
 		
