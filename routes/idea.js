@@ -8,7 +8,8 @@ module.exports = {
 				'idea': req.body.idea,
 				'prev': new ObjectId(req.body.prev),
 				'owner': new ObjectId(req.body.owner),
-				'name': req.body.name
+				'name': req.body.name,
+				'timestamp': Date.now()
 			});
 			newIdea.save();
 			var response = {
