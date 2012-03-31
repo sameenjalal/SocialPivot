@@ -1,4 +1,5 @@
 var User = require('../models/userModel.js'),
+	mongoose = require('mognoose'),
 	bcrypt = require('bcrypt');
 
 module.exports = {

@@ -1,6 +1,6 @@
 var User = require('../models/userModel.js'), 
 	bcrypt = require('bcrypt'),
-	mongoose = require('mongoose');
+	mongoose = require('mongoose'),
 	ObjectId = mongoose.Type.ObjectId;
 
 module.exports = {
