@@ -76,7 +76,7 @@ module.exports = {
 	saveIdea:
 		function(req, res) {
 			var post_data = "";
-			req.body.owner = req.session.id;
+			req.body.owner = req.session.user.id;
 			for(key in req.body) {
 				if(req.body.hasOwnProperty(key)) {
 					post_data += key + "=" + req.body[key] + "&";
@@ -103,7 +103,7 @@ module.exports = {
 		  			var ideaData = JSON.parse(respData);
 		  			console.log()
 		  			if(ideaData.status === "Success") {
-		  				res.redirect("/ideaView/"+ideaData.data);
+		  				res.redirect("/idea/"+ideaData.data);
 		  			} else {
 		  				res.redirect("/createIdea");
 		  			}
@@ -138,7 +138,7 @@ module.exports = {
 							comments.sort(sortChrono);
 							
 							/* render the view */
-							res.render(idea, {
+							res.render('ideaView.ejs', {
 								idea : idea, 
 								comments : comments,
 								session: loginStatus(req)
