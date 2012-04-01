@@ -7,7 +7,7 @@ var User = require('../models/userModel.js'),
 
 function loginStatus(req) {
 	var session;
-	if(req.session) {
+	if(req.session.user) {
 		session = {
 			user: req.session.user,
 			logged_in: true
