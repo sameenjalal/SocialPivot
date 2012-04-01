@@ -18,7 +18,7 @@ var ideaSchema = new Schema({
 	'timestamp': Date
 });
 
-ideaSchema.add({prev : ideaSchema});
+ideaSchema.add({prev : [ideaSchema]});
 
 var commentSchema = new Schema({
 	'user' : [userSchema],

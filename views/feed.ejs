@@ -4,22 +4,38 @@
 
 <% for(var i=0; i<activity.length; i++) { %>
 	<div class="well">
-		<div class="row">
 		<% var a = activity[i];
-		   if(a.idea) { %>
+		if(a.owner) { %>
+		<div class="row">
 		   	 <div class="span6">
 		   		 <h2><a href="/idea/<%= a._id %>"><%= a.name %></a></h2>
 		   	 <div class="span3">
-		   	 	 <span>Created by: <%= a.owner %></span>
+		   	 	 <span>Created by: <a href="/profile/<%= a.owner[0]._id %>"><%= a.owner[0].username %></a></span>
 		   	 </div>
 		   	 <% if(a.prev !== null) { %>
 		   	 <div class="span3">
+		   	 	<span>Pivoted From: <a href="/idea/<%= a.prev[0]._id %>"><%= a.prev[0].name %></a></span>
+		   	 </div>
+		   	 <% } %>
 		</div>
 		<div class="row">
 		   	 <ul>
 		   	 	<% for(var j=0; j<a.tags.length; j++) { %>
-		   	 		<li><a href="/search?search_terms=<%= a.tags[j] %>"><%= a.tags[j] %></a></li>
+		   	 		<li><a href="/search?search_terms=<%= a.idea.tags[j] %>"><%= a.idea.tags[j] %></a></li>
 		   	 	<% } %>
 		   	 </ul>
 		</div>
-		<div class
+		<div class="row">
+			<span><%= a.idea.description %><span>
+		</div>
+		<%= } else if(a.comment) { %>
+		<div class="row">
+			<p><a href="/profile/<%= a.user[0]._id %>"><%= a.user[0].username %></a> 
+				just commented on <a href="/idea/<%= a.idea[0]._id %>"><%= a.idea[0].idea.name %></a> saying: <%= a.comment %>
+			</p>
+		</div>
+		<% } %>
+	</div>
+<% } %> 
+
+<%- partial('footer.ejs') %>
