@@ -15,7 +15,7 @@
 					<% } else { %>
 						<%- partial('logged-in-header.ejs', {'user': session.user}) %>
 					<% } %>
-					<form class="navbar-search pull-left" action="search">
+					<form class="navbar-search pull-left" action="/search" method="get">
 						<input type="text" class="search-query span2" placeholder="Search" />
 					</form>
 				</div>

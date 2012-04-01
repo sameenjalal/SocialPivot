@@ -4,6 +4,13 @@ var User = require('../models/userModel.js'),
 	ObjectId = mongoose.Types.ObjectId;
 
 module.exports = {
+	/* PARAMS
+		@POST PARAMS
+		username: the username of the user
+		password: password of the user
+		pic: avatar for hte user
+		info: a little user bio
+	*/
 	
 	create :
 		function(req, res){
