@@ -4,8 +4,8 @@
 
 <% for(var i=0; i<activity.length; i++) { %>
 	<div class="well">
-		<% var a = activity[i];
-		if(a.owner) { %>
+		<% var a = activity[i]; %>
+		<% if(a.owner) { %>
 		<div class="row">
 		   	 <div class="span6">
 		   		 <h2><a href="/idea/<%= a._id %>"><%= a.name %></a></h2>

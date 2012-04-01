@@ -1,0 +1,17 @@
+<%- partial('header.ejs', {session: session}) %>
+
+<div style="margin-top: 80px;" class="container">
+	<div class="row">
+		<h1 style="margin-bottom: 10px;" >Sign Up</h1>
+		<form id="register" class=".form-vertical" action="/register" method="post">
+			<input type="text" name="username" placeholder="Username" />
+			<input type="password" name="password" placeholder="Password" />
+			<input type="password" placeholder="Confirm Password" />
+			<input type="text" name="pic" placeholder="Give us a link to show off your pretty face :)" />
+			<textarea name="info" placeholder="Tell us a bit about yourself."></textarea>
+			<input type="submit" value="Sign Up" />
+		</form>
+	</div>
+</div>
+
+<%- partial('footer.ejs') %>
