@@ -37,11 +37,11 @@
 
 	<% for( var i = 0 ; i < comments.length ; i++ ) { %>
 		<div class="row-fluid">
-			<div class="span10">
-				<%= comments[i].text %> by: <a href="<%= comments[i].user.username %>"><%= comments[i].user.username %></a>
+			<div class="span5">
+				<%= comments[i].text %> by: <a href="<%= comments[i].user[0].username %>"><%= comments[i].user[0].username %></a>
 			</div>
 			<div class="span2">
-				<%= comments[i].rating %>
+				<span class="badge badge-info><%= comments[i].rating %></span>
 			</div>
 		</div>
 	<% } %>
