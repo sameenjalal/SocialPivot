@@ -81,6 +81,7 @@ app.get("/feed", routes.views.feedView);
 app.get("/signup", routes.views.signup);
 app.get("/createIdea", routes.views.createIdea);
 app.post("/saveIdea", routes.views.saveIdea);
+app.post("/")
 
 /* Laning page */
 app.get('/', routes.views.landingView);
