@@ -6,10 +6,10 @@
 			<% var a = activity[i]; %>
 			<% if(a.owner) { %>
 			<div class="row">
-			   	 <div class="span6">
+			   	 <div class="span4">
 			   		 <h2><a href="/idea/<%= a._id %>"><%= a.name %></a></h2>
 			   	 </div>
-			   	 <div class="span3">
+			   	 <div style="margin-top: 15px;" class="span3">
 			   	 	 <span>Created by: <a href="/profile/<%= a.owner[0]._id %>"><%= a.owner[0].username %></a></span>
 			   	 </div>
 			   	 <% if(a.prev.length > 0) { %>
@@ -19,9 +19,7 @@
 			   	 <% } %>
 			</div>
 			<div class="row">
-				<% if(typeof a.idea !== 'undefined' && a.idea.length > 0){ %>
-					<span><%= a.idea[0].text %><span>
-				<%}%>
+				<span class="span3"><%= a.idea_body %><span>
 			</div>
 			<% } else if(a.comment) { %>
 			<div class="row">
