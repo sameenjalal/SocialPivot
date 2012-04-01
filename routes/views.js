@@ -96,8 +96,10 @@ module.exports = {
 			});
 		},
 
-
-	/* renders the search view for a given query */
+	/* renders the search view for a given query
+	*  params:
+	*   search_terms: String
+	*/
 	searchView :
 		function(req, res){
 			var search_terms = req.query.search_terms;

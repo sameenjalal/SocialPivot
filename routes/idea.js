@@ -5,18 +5,18 @@ var Idea = require("../models/ideaModel.js"),
 
 module.exports = {
 
-
 	/* creates and stores Idea thru post
-	 * post params:
-	 *  name: String
-	 *  owner: userID
-	 *  prev: ideaID
-	 *  idea: Stringified Object
-	 */
+	* post params:
+	*  name: String
+	*  owner: userID
+	*  prev: ideaID
+	*  body: String
+	*/
 	create :
 		function(req, res) {
 			var response;
 			var newIdea;
+			console.log( req.body );
 			if(req.body.owner) {
 				User.findOne({_id: new ObjectId(req.body.owner)}, function(err, doc) {
 					if(err) {
@@ -26,11 +26,6 @@ module.exports = {
 						};
 						res.send(response);
 					} else if(doc !== null) {
-						var idea_json_object = JSON.parse( req.body.idea );
-						var idea_to_insert = {
-							tags: idea_json_object[ 'tags' ],
-							body: idea_json_object[ 'body' ]
-						};
 						if(req.body.prev) {
 							Idea.findOne({_id: new ObjectId(req.body.prev)}, function(err, doc2) {
 								if(err) {
@@ -40,7 +35,7 @@ module.exports = {
 									};
 								} else if(doc !== null) {
 									newIdea = new Idea({
-										'idea': idea_to_insert,
+										'idea_body': req.body.idea_body,
 										'name': req.body.name,
 										'timestamp': Date.now()
 									});
@@ -62,7 +57,7 @@ module.exports = {
 							});
 						} else {
 							newIdea = new Idea({
-								'idea': idea_to_insert,
+								'idea_body': req.body.idea_body,
 								'name': req.body.name,
 								'timestamp': Date.now()
 							});

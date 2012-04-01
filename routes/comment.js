@@ -7,12 +7,12 @@ var Comment = require("../models/commentModel.js"),
 module.exports = {
 	
 	/* creates and stores a Comment thru a post
-	 * post params:
-	 *  user_id : userID
-	 *  idea_id : ideaID
-	 *  rating : Number
-	 *  text : String
-	 */
+	* post params:
+	*  user_id : userID
+	*  idea_id : ideaID
+	*  rating : Number
+	*  text : String
+	*/
 	create :
 		function(req, res){
 			var my_user;
