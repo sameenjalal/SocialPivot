@@ -257,7 +257,6 @@ module.exports = {
 					res.writeHead(404);
 					res.end('Unknown User');
 				}else{
-
 					/* get ideas made by user */
 					Idea.find({
 						owner: foundUser._id
