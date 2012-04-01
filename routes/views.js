@@ -1,7 +1,9 @@
 /* requires */
 var User = require('../models/userModel.js'),
 	Idea = require('../models/ideaModel.js'),
-	Comment = require('../models/commentModel.js');
+	Comment = require('../models/commentModel.js'),
+	mongoose = require('mongoose'),
+	ObjectId = mongoose.Types.ObjectId;
 
 function loginStatus(req) {
 	var session;
@@ -58,7 +60,7 @@ module.exports = {
 					
 					/* find the comments */
 					Comment.find({
-						idea._id: new ObjectId(req.params.ideaID)
+						"idea._id": new ObjectId(req.params.ideaID)
 					}, function(err, comments){
 						if(err){
 							internalServerError(res, err);
