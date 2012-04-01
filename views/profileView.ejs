@@ -9,7 +9,7 @@
 	<% for( var i = 0 ; i < recent.length ; i++ ) { %>
 		<div class="container">
 			<pre>
-				<%= if( recent[i].text ) { %>
+				<% if( recent[i].text ) { %>
 					<!-- This is a comment and I have: user, idea, rating, text and timestamp -->
 					<p><a href="/idea/<%=recent[i].idea.name%>"><%= recent[i].idea.name %></a> created: <%= recent[i].timestamp %></p>
 					<p>Created by: <a href="/profile/<%=recent[i].user.username%>"><%= recent[i].user.username %></a></p>
