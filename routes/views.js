@@ -204,12 +204,19 @@ module.exports = {
 
 			var master_docs_list = docs_list_ideas.concat( docs_list_comments, docs_list_userinfo, docs_list_user );
 			var sorted_master_list = master_docs_list.sort( sortChrono );
+			
+			console.log({
+				search_terms : sorted_master_list.slice(0, 10),
+				session: loginStatus(req)
+			});
 
 			/* render search */
+			/*
 			res.render('searchView.ejs', {
 				search_terms : sorted_master_list.slice(0, 10),
 				session: loginStatus(req)
 			});
+			*/
 		},
 
 
@@ -283,7 +290,7 @@ module.exports = {
 										user : foundUser,
 										ideas : foundIdeas.sort(sortChrono),
 										comments : foundComments.sort(sortChrono),
-										recent : activity.splice(0, 10),
+										recent : activity.slice(0, 10),
 										session: loginStatus(req)
 									});
 								}
