@@ -1,15 +1,4 @@
 var mongoose = require('mongoose');
-var ObjectId = mongoose.Schema.ObjectId;
-var User = require('./userModel.js');
+var schemas = require('./schemas.js');
 
-var Schema = mongoose.Schema;
-
-var ideaSchema = new Schema({
-	'idea': {},
-	'prev': Idea,
-	'owner': User,
-	'name': String,
-	'timestamp': Date
-});
-
-module.exports = mongoose.model('Idea', ideaSchema);
+mongoose.model('Idea', schemas.idea);
