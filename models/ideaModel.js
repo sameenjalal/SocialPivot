@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 var ideaSchema = new Schema({
 	'idea': {},
-	'prev': User,
+	'prev': Idea,
 	'owner': User,
 	'name': String,
 	'timestamp': Date
