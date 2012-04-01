@@ -87,7 +87,7 @@ module.exports = {
 	saveIdea:
 		function(req, res) {
 			var post_data = "";
-			req.body.owner = req.session.user.id;
+			req.body.owner = req.session.user._id;
 			for( var key in req.body) {
 				if(req.body.hasOwnProperty(key)) {
 					post_data += key + "=" + req.body[key] + "&";
