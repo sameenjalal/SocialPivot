@@ -290,7 +290,10 @@ module.exports = {
 	/* TODO this is bad, currently pullng everything and then sorting */
 	feedView :
 		function(req, res){
-			
+			var session = loginStatus(req);
+			if(!session.logged_in) {
+				res.redirect("/");
+			}
 			/* find all the ideas */
 			Idea.find({}, function(err, ideas){
 				if(err){
@@ -309,7 +312,7 @@ module.exports = {
 							var session = loginStatus(req);
 							res.render('feed.ejs', {
 								activity: activity,
-								session: loginStatus(req)
+								session: session
 							});
 						}
 					});
