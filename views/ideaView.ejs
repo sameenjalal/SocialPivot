@@ -34,7 +34,7 @@
 			<%= idea.idea_body %>
 		</div>
 	</div>
-
+	<hr>
 	<% for( var i = 0 ; i < comments.length ; i++ ) { %>
 		<div class="row-fluid">
 			<div class="span5">
@@ -44,6 +44,7 @@
 				<span class="badge badge-info"><%= comments[i].rating %></span>
 			</div>
 		</div>
+		<br>
 	<% } %>
 	<hr>
 	<% if(session.user) { %>

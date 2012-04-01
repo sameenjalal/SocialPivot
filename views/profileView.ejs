@@ -10,12 +10,12 @@
 		<h2><%= user.username %>'s Recent Activity:</h2>
 		<% for( var i = 0 ; i < recent.length ; i++ ) { %>
 			<div class="container-fluid">
-				<% if( recent[i].text ) { %>
+				<% if( recent[i] && recent[i].text ) { %>
 					<!-- This is a comment and I have: user, idea, rating, text and timestamp -->
 					<span><a href="/idea/<%=recent[i].idea.name%>"><%= recent[i].idea.name %></a> created: <%= recent[i].timestamp %></span>
 					<span>Created by: <a href="/profile/<%=recent[i].user.username%>"><%= recent[i].user.username %></a><span>
 					<span>My comment: <%= recent[i].text %></span>
-				<% } else { %>
+				<% } else if( recent[i] ) { %>
 					<!-- This is an idea and I have: idea_body, name, timestamp -->
 					<span><a href="/idea/<%=recent[i]._id%>"><%= recent[i].name %></a> created: <%= recent[i].timestamp %></span>
 					<span><%= recent[i].idea_body %></span>
@@ -23,6 +23,7 @@
 						<span>Pivoted from <a href="/idea/<%=recent[i].prev[0]._id%>"><%=recent[i].prev[0].name%></a> created by:<a href="/profile/<%=recent[i].prev[0].owner[0]._id%>"><%= recent[i].prev[0].owner[0].username %></a></span>
 					<% } %>
 				<% } %>
+				<br>
 			</div>
 		<% } %>
 	</div>
