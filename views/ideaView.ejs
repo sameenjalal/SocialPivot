@@ -13,13 +13,18 @@
 		</div>
 	</div>
 	<div style="margin-bottom: 15px;" class="row-fluid">
-			<div class="span3">
+			<div class="span2">
 				<span>By: <a href="/profile/<%= idea.owner[0].username %>" ><%= idea.owner[0].username %></a></span>
 			</div>
+			<% if(idea.prev[0]) { %>
+				<div class="span2">
+					<span>Pivoted from: <a href="/idea/<%= idea.prev[0]._id%>"><%=idea.prev[0].name%></a></span>
+				</div>
+			<% } %>
 			<div class="span6">
-				<ul>
+				<ul id="tags">
 					<% for(var k = 0; k<idea.tags.length; k++) { %>
-					<li><a href="/search?search_query=<%= idea.tags[k] %>"><%= idea.tags[k] %></a></li>
+					<li><a href="/search?search_terms=<%= idea.tags[k] %>"><%= idea.tags[k] %></a></li>
 					<% } %>
 				</ul>
 			</div>
