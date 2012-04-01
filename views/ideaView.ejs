@@ -38,13 +38,15 @@
 	<% for( var i = 0 ; i < comments.length ; i++ ) { %>
 		<div class="row-fluid">
 			<div class="span5">
-				<%= comments[i].text %> by: <a href="<%= comments[i].user[0].username %>"><%= comments[i].user[0].username %></a>
+				<span><%= comments[i].text %> by: <a href="/profile/<%= comments[i].user[0]._id %>"><%= comments[i].user[0].username %></a></span>
 			</div>
 			<div class="span2">
-				<span class="badge badge-info><%= comments[i].rating %></span>
+				<span class="badge badge-info"><%= comments[i].rating %></span>
 			</div>
 		</div>
 	<% } %>
+	<hr>
+	<% if(session.user) { %>
 	<div class="row-fluid" id="comment_div">
 		<h2>Tell us what you Think</h2>
 		<form id="comment-submit" action="/submitComment" method="post">
@@ -66,6 +68,9 @@
 		</form>
 	</div>
 	<button id="comment_box_button" class="btn" >Show Comment Box</button>
+	<% } else { %>
+		<p>You must be <a href="/signup">Registered</a> to leave a comment.</p>
+	<% } %>
 
 </div>
 
