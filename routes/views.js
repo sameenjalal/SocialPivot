@@ -157,66 +157,69 @@ module.exports = {
 		function(req, res){
 			var search_terms = req.query.search_terms;
 			var search_terms_list = search_terms.split( "\\s+" );
-
+			
+			/* ending callback */
+			var master_docs_list = [];
+			var counter = 0;
+			var numOfQueries = 4*search_terms_list.length;
+			var searchCb = function(list){
+				if(counter < numOfQueries-1){
+					master_docs_list = master_docs_list.concat(list);
+					counter++;
+				}else{
+					var sorted_master_list = master_docs_list.sort( sortChrono );
+					/* render search */
+					res.render('searchView.ejs', {
+						search_results : sorted_master_list.slice(0, 25),
+						session: loginStatus(req)
+					});
+				}
+			};
+			
+			/* query the db */
 			var docs_list_ideas = [];
 			for(var i in search_terms_list){	
-				Idea.find({ 'name': { $regex : search_terms_list[i], $options : 'i'} }, function( err, ideas ){
+				Idea.find({ 'name': new RegExp(search_terms_list[i], 'i') }, function( err, ideas ){
 					if( err ){
 						internalError( res, err );
-					} else if( ideas !== null ) {
-						docs_list_ideas = docs_list_ideas.concat(ideas);
+					} else{
+						searchCb(ideas);
 					}
 				});
 			}
 
 			var docs_list_comments = [];
 			for(var i in search_terms_list){
-				Comment.find({ 'text': { $regex : search_terms_list[i], $options : 'i'} }, function( err, comments ){
+				Comment.find({ 'text': new RegExp(search_terms_list[i], 'i') }, function( err, comments ){
 					if( err ){
 						internalError( res, err );
-					} else if( comment !== null ) {
-						docs_list_comments = docs_list_comments.concat(comments);
+					} else{
+						searchCb(comments);
 					}
 				});
 			}
 
 			var docs_list_userinfo = [];
 			for(var i in search_terms_list){
-				User.find({ 'info': { $regex : search_terms_list[i], $options : 'i'} }, function( err, userinfo ){
+				User.find({ 'info': new RegExp(search_terms_list[i], 'i') }, function( err, userinfo ){
 					if( err ){
 						internalError( res, err );
-					} else if( userinfo !== null ) {
-						docs_list_userinfo = docs_list_userinfo.concat(userinfo);
+					} else{
+						searchCb(userinfo);
 					}
 				});
 			}
 
 			var docs_list_user = [];
 			for(var i in search_terms_list){
-				User.find({ 'username': { $regex : search_terms_list[i], $options : 'i'} }, function( err, user ){
+				User.find({ 'username': new RegExp(search_terms_list[i], 'i') }, function( err, user ){
 					if( err ){
 						internalError( res, err );
-					} else if( user !== null ) {
-						docs_list_user = docs_list_user.concat(user);
+					} else{
+						searchCb(user);
 					}
 				});
 			}
-
-			var master_docs_list = docs_list_ideas.concat( docs_list_comments, docs_list_userinfo, docs_list_user );
-			var sorted_master_list = master_docs_list.sort( sortChrono );
-			
-			console.log({
-				search_terms : sorted_master_list.slice(0, 10),
-				session: loginStatus(req)
-			});
-
-			/* render search */
-			/*
-			res.render('searchView.ejs', {
-				search_terms : sorted_master_list.slice(0, 10),
-				session: loginStatus(req)
-			});
-			*/
 		},
 
 
