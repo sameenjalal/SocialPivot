@@ -14,6 +14,7 @@ module.exports = {
 	
 	create :
 		function(req, res){
+			console.log(req.body);
 			var response;
 			User.findOne({username: req.body.username}, function(err, doc) {
 				if(err) {
