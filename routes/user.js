@@ -18,6 +18,7 @@ module.exports = {
 			var response;
 			User.findOne({username: req.body.username}, function(err, doc) {
 				if(err) {
+					throw err;
 					response = {
 						status: 'Error',
 						data: err
