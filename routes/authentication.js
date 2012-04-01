@@ -41,7 +41,7 @@ module.exports = {
 	register:
 		function(req, res) {
 			var post_data = "";
-			for(key in req.body) {
+			for( var key in req.body ) {
 				if(req.body.hasOwnProperty(key)) {
 					post_data += key + "=" + req.body[key] + "&";
 				}
