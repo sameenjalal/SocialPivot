@@ -29,11 +29,11 @@
 					just commented on <a href="/idea/<%= a.idea[0]._id %>"><%= a.idea[0].idea.name %></a> saying: <%= a.comment %>
 					</p>
 				</div>
-			<% } else { %>
+			<% } else if( a.username ) { %>
 				<!-- This is a user -->
 				<div class="row">
 					<div class="span3">
-						<h2><a href="/profile/<%= a.user[0]._id %>"><%= a.user[0].username %></a></h2>
+						<h2><a href="/profile/<%= a._id %>"><%= a.username %></a></h2>
 					</div>
 					<div style="margin-top: 15px;" class="span5">
 						<span>Info: <%= a.info %></span>
