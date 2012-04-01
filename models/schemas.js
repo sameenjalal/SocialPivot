@@ -18,7 +18,9 @@ var ideaSchema = new Schema({
 	'timestamp': Date
 });
 
-ideaSchema.add({prev : ideaSchema});
+ideaSchema.add({
+	prev : [ideaSchema]
+});
 
 var commentSchema = new Schema({
 	'user' : [userSchema],
@@ -28,8 +30,8 @@ var commentSchema = new Schema({
 	'timestamp' : Date
 });
 
-module.exports({
+module.exports = {
 	user : userSchema,
 	idea : ideaSchema,
 	comment : commentSchema
-});
+};

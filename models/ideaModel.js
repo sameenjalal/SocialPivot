@@ -1,4 +1,4 @@
 var mongoose = require('mongoose');
 var schemas = require('./schemas.js');
 
-mongoose.model('Idea', schemas.idea);
+module.exports = mongoose.model('Idea', schemas.idea);

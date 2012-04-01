@@ -57,13 +57,13 @@ app.get("/destroy_:model?", function(req, res) {
 });
 
 /* views */
-app.get("/profile/:userId", routes.views.profile);
-app.get("/idea/:ideaID", routes.views.idea);
-app.get("/search?", routes.views.search);
+app.get("/profile/:userId", routes.views.profileView);
+app.get("/idea/:ideaID", routes.views.ideaView);
+app.get("/search?", routes.views.searchView);
+app.get("/feed", routes.views.feedView);
 
 /* hello world testing */
 app.get('/', function(req, res){
-	res.writeHead(500);
 	res.send('hello world');
 });
 

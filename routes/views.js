@@ -139,7 +139,8 @@ module.exports = {
 		function(req, res){
 			
 			/* find all the ideas */
-			Ideas.find({}, function(err, ideas){
+			console.log(Idea);
+			Idea.find({}, function(err, ideas){
 				if(err){
 					internalServerError(res, err);
 				}else{
