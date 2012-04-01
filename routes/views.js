@@ -354,8 +354,12 @@ module.exports = {
 										
 										/* sort the top 10 recent activity */
 										var activity = [];
-										activity.push(foundIdeas);
-										activity.push(foundComments);
+										for(var i =0; i<foundIdeas.length; i++) {
+											activity.push(foundIdeas[i]);
+										}
+										for(var j =0; j<foundIdeas.length; j++) {
+											activity.push(foundComments[j]);
+										}
 										activity.sort(sortChrono);
 										/* render user profile */
 										res.render('profileView.ejs', {
