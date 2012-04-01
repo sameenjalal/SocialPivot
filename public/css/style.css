@@ -29,3 +29,8 @@
 #pivot-button a {
 	color: #FFF;
 }
+
+#comment-submit textarea {
+	height: 180px;
+	width: 458px;
+}
