@@ -16,7 +16,6 @@ module.exports = {
 		function(req, res) {
 			var response;
 			var newIdea;
-			console.log( req.body );
 			if(req.body.owner) {
 				User.findOne({_id: new ObjectId(req.body.owner)}, function(err, doc) {
 					if(err) {
@@ -50,7 +49,7 @@ module.exports = {
 								} else {
 									response = {
 										status: "Failure",
-										data: "The previous IDea could not be found"
+										data: "The previous Idea could not be found"
 									};
 								}
 								res.send(response);
