@@ -61,6 +61,17 @@ module.exports = {
 			});
 		},
 
+	createIdea:
+		function(req, res) {
+			if(req.body.prev) {
+
+			} else {
+				res.render('createIdea.ejs', {
+					session: loginStatus(req)
+				});
+			}
+		},
+
 
 	/* renders the idea view for a :ideaID that corrosponds to db ID */
 	ideaView :

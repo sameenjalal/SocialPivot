@@ -8,6 +8,7 @@
 			<div class="row">
 			   	 <div class="span6">
 			   		 <h2><a href="/idea/<%= a._id %>"><%= a.name %></a></h2>
+			   	 </div>
 			   	 <div class="span3">
 			   	 	 <span>Created by: <a href="/profile/<%= a.owner[0]._id %>"><%= a.owner[0].username %></a></span>
 			   	 </div>
@@ -16,13 +17,6 @@
 			   	 	<span>Pivoted From: <a href="/idea/<%= a.prev[0]._id %>"><%= a.prev[0].name %></a></span>
 			   	 </div>
 			   	 <% } %>
-			</div>
-			<div class="row">
-			   	 <ul>
-			   	 	<% for(var j=0; j<a.tags.length; j++) { %>
-			   	 		<li><a href="/search?search_terms=<%= a.idea.tags[j] %>"><%= a.idea.tags[j] %></a></li>
-			   	 	<% } %>
-			   	 </ul>
 			</div>
 			<div class="row">
 				<span><%= a.idea.description %><span>
