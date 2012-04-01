@@ -15,7 +15,8 @@ var ideaSchema = new Schema({
 	'idea_body': String,
 	'owner': [userSchema],
 	'name': String,
-	'timestamp': Date
+	'timestamp': Date,
+	'tags': []
 });
 
 ideaSchema.add({

@@ -87,41 +87,40 @@ module.exports = {
 		function(req, res) {
 			var post_data = "";
 			req.body.owner = req.session.user.id;
-			for(key in req.body) {
+			for( var key in req.body) {
 				if(req.body.hasOwnProperty(key)) {
 					post_data += key + "=" + req.body[key] + "&";
 				}
 			}
 			post_data = post_data.slice(0, post_data.length-1);
 			var post_options = {
-		      host: 'localhost',
-		      port: '4242',
-		      path: '/create_idea',
-		      method: 'POST',
-		      headers: {
-		          'Content-Type': 'application/x-www-form-urlencoded',
-		          'Content-Length': post_data.length
-		      }
-		  	};
-		  	var post_request = http.request(post_options, function(ideaRes) {
-		  		ideaRes.setEncoding('utf8');
-		  		var respData = "";
-		  		ideaRes.on('data', function(chunk) {
-		  			respData += chunk;
-		  		});
-		  		ideaRes.on('end', function() {
-		  			var ideaData = JSON.parse(respData);
-		  			console.log()
-		  			if(ideaData.status === "Success") {
-		  				res.redirect("/idea/"+ideaData.data);
-		  			} else {
-		  				res.redirect("/createIdea");
-		  			}
-		  		});
-		  	});
+				host: 'localhost',
+				port: '4242',
+				path: '/create_idea',
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'Content-Length': post_data.length
+				}
+			};
+			var post_request = http.request(post_options, function(ideaRes) {
+				ideaRes.setEncoding('utf8');
+				var respData = "";
+				ideaRes.on('data', function(chunk) {
+					respData += chunk;
+				});
+				ideaRes.on('end', function() {
+					var ideaData = JSON.parse(respData);
+					if(ideaData.status === "Success") {
+						res.redirect("/idea/"+ideaData.data);
+					} else {
+						res.redirect("/createIdea");
+					}
+				});
+			});
 
-		  	post_request.write(post_data);
-		  	post_request.end();
+			post_request.write(post_data);
+			post_request.end();
 		},
 
 
