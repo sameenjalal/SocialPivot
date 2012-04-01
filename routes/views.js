@@ -248,9 +248,7 @@ module.exports = {
 		function(req, res){
 			
 			/* get user data */
-			User.findOne({
-				_id : new ObjectId(req.params.userId)
-			}, function(err, foundUser){
+			User.findOne({ _id : new ObjectId(req.params.userId)}, function(err, foundUser){
 				if(err){
 					internalError(res, err);
 				}else if(foundUser === null){
@@ -259,9 +257,7 @@ module.exports = {
 				}else{
 
 					/* get ideas made by user */
-					Idea.find({
-						owner: foundUser._id
-					}, function(err, foundIdeas){
+					Idea.find({owner: foundUser._id}, function(err, foundIdeas){
 						if(err){
 							internalError(res, err);
 						}else{
@@ -276,8 +272,8 @@ module.exports = {
 									
 									/* sort the top 10 recent activity */
 									var activity = [];
-									activity.push(ideas);
-									activity.push(comments);
+									activity.push(foundIdeas);
+									activity.push(foundComments);
 									activity.sort(sortChrono);
 
 									/* render user profile */
