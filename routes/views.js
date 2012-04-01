@@ -61,6 +61,17 @@ module.exports = {
 			});
 		},
 
+	createIdea:
+		function(req, res) {
+			if(req.body.prev) {
+
+			} else {
+				res.render('createIdea.ejs', {
+					session: loginStatus(req)
+				});
+			}
+		},
+
 
 	/* renders the idea view for a :ideaID that corrosponds to db ID */
 	ideaView :
@@ -176,7 +187,6 @@ module.exports = {
 							activity.sort(sortChrono);
 							activity.splice(0, 20);
 							var session = loginStatus(req);
-							console.log(session);
 							res.render('feed.ejs', {
 								activity: activity,
 								session: loginStatus(req)

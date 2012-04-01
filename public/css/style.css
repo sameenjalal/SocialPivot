@@ -12,3 +12,12 @@
 	height: 180px;
 	width: 458px;
 }
+
+#createIdea input {
+	display: block;
+}
+
+#createIdea textarea {
+	height: 180px;
+	width: 458px;
+}

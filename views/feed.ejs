@@ -19,13 +19,6 @@
 			   	 <% } %>
 			</div>
 			<div class="row">
-			   	 <ul>
-			   	 	<% for(var j=0; j<a.tags.length; j++) { %>
-			   	 		<li><a href="/search?search_terms=<%= a.idea.tags[j] %>"><%= a.idea.tags[j] %></a></li>
-			   	 	<% } %>
-			   	 </ul>
-			</div>
-			<div class="row">
 				<span><%= a.idea.description %><span>
 			</div>
 			<% } else if(a.comment) { %>
