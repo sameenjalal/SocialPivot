@@ -61,6 +61,17 @@ module.exports = {
 			});
 		},
 
+	createIdea:
+		function(req, res) {
+			if(req.body.prev) {
+
+			} else {
+				res.render('createIdea.ejs', {
+					session: loginStatus(req)
+				});
+			}
+		},
+
 
 	/* renders the idea view for a :ideaID that corrosponds to db ID */
 	ideaView :
@@ -161,21 +172,25 @@ module.exports = {
 			Idea.find({}, function(err, ideas){
 				if(err){
 					internalServerError(res, err);
-				}else{
-					
+				} else{
+					console.log('\n\n'+typeof ideas);
+					console.log('\n\nideas is '+ideas);
 					/* find all the comments */
 					Comment.find({}, function(err, comments){
 						if(err){
 							internalServerError(res, ideas);
-						}else{
+						} else {
 							
+							console.log('\n\ncomments is '+comments);
 							/* sort and render */
-							var activity = [];
-							activity.push(ideas);
-							activity.push(comments);
-							activity.sort(sortChrono);
-							activity.splice(0, 20);
-							res.render('feedView.ejs', {
+							var activity = ideas.concat(comments);
+							
+							console.log('\n\nactivity is : '+activity);
+							//activity.sort(sortChrono);
+							activity.slice(0, 20);
+							console.log('\n\nactivity is : '+activity);
+							var session = loginStatus(req);
+							res.render('feed.ejs', {
 								activity: activity,
 								session: loginStatus(req)
 							});

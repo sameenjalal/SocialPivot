@@ -35,7 +35,10 @@ module.exports = {
 						});
 						response = {
 							status: 'Success',
-							data: newUser._id
+							data: {
+								_id: newUser._id,
+								name: newUser.username
+							}
 						};
 						newUser.save(function(err) {
 							if(err) {

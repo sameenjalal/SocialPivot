@@ -69,7 +69,8 @@ app.get("/destroy_:model?", function(req, res) {
 });
 
 /* Login/Logout/Register */
-app.get("/login", routes.authentication.login);
+app.post("/login", routes.authentication.login);
+app.get("/logout", routes.authentication.logout);
 app.post("/register", routes.authentication.register);
 
 /* views */
@@ -78,6 +79,8 @@ app.get("/idea/:ideaID", routes.views.ideaView);
 app.get("/search?", routes.views.searchView);
 app.get("/feed", routes.views.feedView);
 app.get("/signup", routes.views.signup);
+app.get("/createIdea", routes.views.createIdea);
+app.post("/saveIdea", routes.views.saveIdea);
 
 /* Laning page */
 app.get('/', routes.views.landingView);
