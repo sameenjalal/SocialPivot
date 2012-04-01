@@ -12,7 +12,7 @@ var userSchema = new Schema({
 });
 
 var ideaSchema = new Schema({
-	'idea': {},
+	'idea_body': String,
 	'owner': [userSchema],
 	'name': String,
 	'timestamp': Date
