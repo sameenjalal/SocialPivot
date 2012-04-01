@@ -12,8 +12,8 @@ module.exports = {
 					res.redirect('/');
 				} else {
 					if(doc !== null) {
-						bcrypt.compare(req.body.password, doc.password, function(err, res) {
-							if(err || res === false) {
+						bcrypt.compare(req.body.password, doc.password, function(err, match) {
+							if(err || match === false) {
 								res.redirect('/');
 							} else {
 								req.session.user = {
