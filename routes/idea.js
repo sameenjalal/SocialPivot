@@ -19,7 +19,7 @@ module.exports = {
 						res.send(response);
 					} else if(doc !== null) {
 						if(req.body.prev) {
-							User.findOne({_id: new ObjectId(req.body.prev)}, function(err, doc2) {
+							Idea.findOne({_id: new ObjectId(req.body.prev)}, function(err, doc2) {
 								if(err) {
 									response = {
 										status: "Error",
@@ -38,6 +38,11 @@ module.exports = {
 									response = {
 										status: "Success",
 										data: newIdea._id
+									};
+								} else {
+									response = {
+										status: "Failure",
+										data: "The previous IDea could not be found"
 									};
 								}
 								res.send(response);
