@@ -1,8 +1,11 @@
 /* enviroment */
 var port = process.env.PORT || 4242;
+var secret = require('./secret.js');
+var db_path = "mongodb://batman:"+secret.password+"@staff.mongohq.com:10005/socialpivot";
 
 /* requires */
 var express = require("express");
+var mongoose = require('mongoose');
 var routes = {
 	user : require('./routes/user.js'),
 	idea : require('./routes/idea.js'),
@@ -10,8 +13,13 @@ var routes = {
 	views : require('./routes/views.js')
 };
 
+
 /* create server */
 var app = express.createServer();
+
+/* init database */
+db = mongoose.connect(db_path);
+
 
 /* configs */
 app.configure(function(){
@@ -71,4 +79,5 @@ app.get('/', routes.views.landingView);
 
 /* start 'er up */
 app.listen(port);
+console.log("server is listening for database at "+db_path);
 console.log("server has started on port "+port);
