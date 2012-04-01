@@ -10,7 +10,8 @@ var routes = {
 	user : require('./routes/user.js'),
 	idea : require('./routes/idea.js'),
 	comment : require('./routes/comment.js'),
-	views : require('./routes/views.js')
+	views : require('./routes/views.js'),
+	authentication: require('./routes/authentication.js')
 };
 
 
@@ -67,13 +68,16 @@ app.get("/destroy_:model?", function(req, res) {
 	}	
 });
 
+/* Login */
+app.get("/login", routes.authentication.login);
+
 /* views */
 app.get("/profile/:userId", routes.views.profileView);
 app.get("/idea/:ideaID", routes.views.ideaView);
 app.get("/search?", routes.views.searchView);
 app.get("/feed", routes.views.feedView);
 
-/* hello world testing */
+/* Laning page */
 app.get('/', routes.views.landingView);
 
 
