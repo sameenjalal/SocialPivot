@@ -63,9 +63,7 @@ app.get("/search?", routes.views.searchView);
 app.get("/feed", routes.views.feedView);
 
 /* hello world testing */
-app.get('/', function(req, res){
-	res.send('hello world');
-});
+app.get('/', routes.views.landingView);
 
 
 /* start 'er up */

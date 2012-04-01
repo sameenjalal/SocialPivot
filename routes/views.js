@@ -45,6 +45,16 @@ module.exports = {
 			res.end('request not found');
 		},
 
+	/* render landing view */
+	landingView :
+		function(req, res){
+			
+			res.render('landing.ejs', {
+				session : loginStatus(req)
+			});
+		},
+
+
 	/* renders the idea view for a :ideaID that corrosponds to db ID */
 	ideaView :
 		function(req, res){
@@ -139,7 +149,6 @@ module.exports = {
 		function(req, res){
 			
 			/* find all the ideas */
-			console.log(Idea);
 			Idea.find({}, function(err, ideas){
 				if(err){
 					internalServerError(res, err);
