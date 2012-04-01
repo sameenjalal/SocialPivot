@@ -240,7 +240,7 @@ module.exports = {
 
 									/* render user profile */
 									res.render('profileView.ejs', {
-										user : foundUsers.sort(sortChrono),
+										user : foundUser,
 										ideas : foundIdeas.sort(sortChrono),
 										comments : foundComments.sort(sortChrono),
 										recent : activity.splice(0, 10),
