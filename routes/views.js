@@ -159,40 +159,48 @@ module.exports = {
 			var search_terms_list = search_terms.split( "\\s+" );
 
 			var docs_list_ideas = [];
-			Idea.find({ 'name': { $in: search_terms_list } }, function( err, ideas ){
-				if( err ){
-					internalError( res, err );
-				} else if( ideas !== null ) {
-					docs_list_ideas = ideas;
-				}
-			});
+			for(var i in search_terms_list){	
+				Idea.find({ 'name': { $regex : search_terms_list[i], $options : 'i'} }, function( err, ideas ){
+					if( err ){
+						internalError( res, err );
+					} else if( ideas !== null ) {
+						docs_list_ideas = docs_list_ideas.concat(ideas);
+					}
+				});
+			}
 
 			var docs_list_comments = [];
-			Comment.find({ 'text': { $in: search_terms_list } }, function( err, comments ){
-				if( err ){
-					internalError( res, err );
-				} else if( comment !== null ) {
-					docs_list_comments = comments;
-				}
-			});
+			for(var i in search_terms_list){
+				Comment.find({ 'text': { $regex : search_terms_list[i], $options : 'i'} }, function( err, comments ){
+					if( err ){
+						internalError( res, err );
+					} else if( comment !== null ) {
+						docs_list_comments = docs_list_comments.concat(comments);
+					}
+				});
+			}
 
 			var docs_list_userinfo = [];
-			User.find({ 'info': { $in: search_terms_list } }, function( err, userinfo ){
-				if( err ){
-					internalError( res, err );
-				} else if( userinfo !== null ) {
-					docs_list_userinfo = userinfo;
-				}
-			});
+			for(var i in search_terms_list){
+				User.find({ 'info': { $regex : search_terms_list[i], $options : 'i'} }, function( err, userinfo ){
+					if( err ){
+						internalError( res, err );
+					} else if( userinfo !== null ) {
+						docs_list_userinfo = docs_list_userinfo.concat(userinfo);
+					}
+				});
+			}
 
 			var docs_list_user = [];
-			User.find({ 'username': { $in: search_terms_list } }, function( err, user ){
-				if( err ){
-					internalError( res, err );
-				} else if( user !== null ) {
-					docs_list_user = user;
-				}
-			});
+			for(var i in search_terms_list){
+				User.find({ 'username': { $regex : search_terms_list[i], $options : 'i'} }, function( err, user ){
+					if( err ){
+						internalError( res, err );
+					} else if( user !== null ) {
+						docs_list_user = docs_list_user.concat(user);
+					}
+				});
+			}
 
 			var master_docs_list = docs_list_ideas.concat( docs_list_comments, docs_list_userinfo, docs_list_user );
 			var sorted_master_list = master_docs_list.sort( sortChrono );
