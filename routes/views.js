@@ -159,13 +159,13 @@ module.exports = {
 			Idea.find({}, function(err, ideas){
 				if(err){
 					internalServerError(res, err);
-				}else{
+				} else{
 					
 					/* find all the comments */
 					Comment.find({}, function(err, comments){
 						if(err){
 							internalServerError(res, ideas);
-						}else{
+						} else {
 							
 							/* sort and render */
 							var activity = [];
@@ -173,7 +173,7 @@ module.exports = {
 							activity.push(comments);
 							activity.sort(sortChrono);
 							activity.splice(0, 20);
-							res.render('feedView.ejs', {
+							res.render('feed.ejs', {
 								activity: activity,
 								session: loginStatus(req)
 							});
