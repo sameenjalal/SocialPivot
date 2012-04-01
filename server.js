@@ -17,7 +17,7 @@ var app = express.createServer();
 app.configure(function(){
 	app.use(express.bodyParser());
 	app.use(express.cookieParser());
-	app.use(express.session());
+	app.use(express.session({secret: "catwoman"}));
 	app.use(express.static(__dirname+"/public"));
 	app.set('views', __dirname+'/views');
 	app.set('view engine', 'ejs');
