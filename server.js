@@ -79,6 +79,7 @@ app.get("/idea/:ideaID", routes.views.ideaView);
 app.get("/search?", routes.views.searchView);
 app.get("/feed", routes.views.feedView);
 app.get("/signup", routes.views.signup);
+app.
 
 /* Laning page */
 app.get('/', routes.views.landingView);
