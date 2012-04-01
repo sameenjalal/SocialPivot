@@ -1,0 +1,14 @@
+<%- partial('header.ejs', {session: session}) %>
+
+<div style="margin-top: 80px;" class="container">
+	<div class="row">
+		<h1 style="margin-bottom: 10px;" >Tell us about your great Idea!</h1>
+		<form id="createIdea" class=".form-vertical" action="/saveIdea" method="post">
+			<input type="text" name="name" placeholder="What's your Idea?" />
+			<textarea name="idea_body" placeholder="Tell us all about your idea"></textarea>
+			<input type="submit" value="Tell the world about it!" />
+		</form>
+	</div>
+</div>
+
+<%- partial('footer.ejs') %>
