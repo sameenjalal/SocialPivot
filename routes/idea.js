@@ -28,11 +28,11 @@ module.exports = {
 								} else if(doc !== null) {
 									newIdea = new Idea({
 										'idea': req.body.idea,
-										'prev': doc2,
-										'owner': doc,
 										'name': req.body.name,
 										'timestamp': Date.now()
 									});
+									newIdea.owner.push(doc);
+									newIdea.prev.push(doc2);
 									newIdea.markModified('idea');
 									newIdea.save();
 									response = {
@@ -50,10 +50,10 @@ module.exports = {
 						} else {
 							newIdea = new Idea({
 								'idea': req.body.idea,
-								'owner': doc,
 								'name': req.body.name,
 								'timestamp': Date.now()
 							});
+							newIdea.owner.push(doc);
 							newIdea.markModified('idea');
 							newIdea.save();
 							response = {

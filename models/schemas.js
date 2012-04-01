@@ -21,8 +21,8 @@ var ideaSchema = new Schema({
 ideaSchema.add({prev : ideaSchema});
 
 var commentSchema = new Schema({
-	'user' : userSchema,
-	'idea' : ideaSchema,
+	'user' : [userSchema],
+	'idea' : [ideaSchema],
 	'rating' : Number,
 	'text' : String,
 	'timestamp' : Date
@@ -33,5 +33,3 @@ module.exports({
 	idea : ideaSchema,
 	comment : commentSchema
 });
-
-			
