@@ -1,0 +1,47 @@
+<%- partial('header.ejs', {session: session}) %>
+<div class="container">
+	<h1>Search Results:</h1>
+	<% for(var i=0; i<search_results.length; i++) { %>
+		<div class="well">
+			<% var a = search_results[i]; %>
+			<% if( a.owner ) { %>
+				<!-- This is an idea -->
+				<div class="row">
+					 <div class="span3">
+						 <h2><a href="/idea/<%= a._id %>"><%= a.name %></a></h2>
+					 </div>
+					 <div style="margin-top: 15px;" class="span5">
+						 <span>Created by: <a href="/profile/<%= a.owner[0]._id %>"><%= a.owner[0].username %></a></span>
+					 </div>
+					 <% if(a.prev.length > 0) { %>
+						 <div class="span2">
+							<span>Pivoted From: <a href="/idea/<%= a.prev[0]._id %>"><%= a.prev[0].name %></a></span>
+						 </div>
+					 <% } %>
+				</div>
+				<div class="row">
+					<span class="span3"><%= a.idea_body %><span>
+				</div>
+			<% } else if( a.idea ) { %>
+				<!-- This is a comment -->
+				<div class="row">
+					<p><a href="/profile/<%= a.user[0]._id %>"><%= a.user[0].username %></a> 
+					just commented on <a href="/idea/<%= a.idea[0]._id %>"><%= a.idea[0].idea.name %></a> saying: <%= a.comment %>
+					</p>
+				</div>
+			<% } else { %>
+				<!-- This is a user -->
+				<div class="row">
+					<div class="span3">
+						<h2><a href="/profile/<%= a.user[0]._id %>"><%= a.user[0].username %></a></h2>
+					</div>
+					<div style="margin-top: 15px;" class="span5">
+						<span>Info: <%= a.info %></span>
+					</div>
+				</div>
+			<% } %>
+		</div>
+	<% } %> 
+</div>
+
+<%- partial('footer.ejs') %>
