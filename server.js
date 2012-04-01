@@ -82,6 +82,8 @@ app.get('/', routes.views.landingView);
 
 
 /* start 'er up */
+mongoose.connection.on('open', function(){
+	console.log('mongoose has opened a connection to '+db_path);
+});
 app.listen(port);
-console.log("server is listening for database at "+db_path);
 console.log("server has started on port "+port);
