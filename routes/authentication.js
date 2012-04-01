@@ -48,8 +48,8 @@ module.exports = {
 			}
 			post_data = post_data.slice(0, post_data.length-1);
 			var post_options = {
-				host: 'localhost',
-				port: '4242',
+				host: 'socialpivot.nodejitsu.com',
+				port: '80',
 				path: '/create_user',
 				method: 'POST',
 				headers: {

@@ -24,7 +24,7 @@ function loginStatus(req) {
 function internalError(res, err){
 	console.log('Error : '+err);
 	res.writeHead(500);
-	res.end('Internal Server Error!');
+	res.end('Internal Server Error!\n\n'+err);
 }
 
 function sortChrono(event1, event2){
@@ -73,8 +73,8 @@ module.exports = {
 			}
 			post_data = post_data.slice(0, post_data.length-1);
 			var post_options = {
-				host: 'localhost',
-				port: '4242',
+				host: 'socialpivot.nodejitsu.com',
+				port: '80',
 				path: '/create_comment',
 				method: 'POST',
 				headers: {
@@ -136,8 +136,8 @@ module.exports = {
 			}
 			post_data = post_data.slice(0, post_data.length-1);
 			var post_options = {
-				host: 'localhost',
-				port: '4242',
+				host: 'socialpivot.nodejitsu.com',
+				port: '80',
 				path: '/create_idea',
 				method: 'POST',
 				headers: {
@@ -218,10 +218,8 @@ module.exports = {
 					counter++;
 				}else{
 					master_docs_list = master_docs_list.concat(list);
-					console.log(master_docs_list);
 					var sorted_master_list = master_docs_list.sort( sortChrono );
 					/* render search */
-					console.log(sorted_master_list.slice(0, 25));
 					res.render('searchView.ejs', {
 						search_results : sorted_master_list.slice(0, 25),
 						session: loginStatus(req)

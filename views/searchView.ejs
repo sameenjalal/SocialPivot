@@ -26,7 +26,7 @@
 				<!-- This is a comment -->
 				<div class="row">
 					<p><a href="/profile/<%= a.user[0]._id %>"><%= a.user[0].username %></a> 
-					just commented on <a href="/idea/<%= a.idea[0]._id %>"><%= a.idea[0].idea.name %></a> saying: <%= a.comment %>
+					just commented on <a href="/idea/<%= a.idea[0]._id %>"><%= a.idea[0].name %></a> saying: <%= a.comment %>
 					</p>
 				</div>
 			<% } else if( a.username ) { %>
