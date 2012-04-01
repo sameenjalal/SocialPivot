@@ -78,7 +78,8 @@ module.exports = {
 				});
 			} else {
 				res.render('createIdea.ejs', {
-					session: loginStatus(req)
+					session: loginStatus(req),
+					prev: undefined
 				});
 			}
 		},

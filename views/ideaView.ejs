@@ -36,6 +36,24 @@
 			</div>
 		</div>
 	<% } %>
+	<div class="row-fluid">
+		<h2>Tell us what you Think</h2>
+		<form id="comment-submit" action="/submitComment" method="post">
+			<div class="control-group">
+				<label class="control-label">Rate this Idea</label>
+				<select name="rating">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+			</div>
+			<textarea name="text"></textarea>
+			<input type="submit" value="Comment" />
+		</form>
+	</div>
+
 </div>
 
 

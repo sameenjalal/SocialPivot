@@ -3,6 +3,7 @@
 <div style="margin-top: 80px;" class="container">
 	<div class="row">
 		<h1 style="margin-bottom: 10px;" >Tell us about your great Idea!</h1>
+		<% if(prev !== undefined) { %>
 		<form id="createIdea" class=".form-vertical" action="/saveIdea" method="post">
 			<input type="text" value="<%= prev.name %>"name="name" placeholder="What's your Idea?" />
 			<textarea name="idea_body" placeholder="Tell us all about your idea"><%= prev.idea_body %></textarea>
@@ -10,6 +11,13 @@
 			<input type="text" name="tags" placeholder="Enter buzzwords here!" />
 			<input type="submit" value="Tell the world about it!" />
 		</form>
+		<% } else { %>
+		<form id="createIdea" class=".form-vertical" action="/saveIdea" method="post">
+			<input type="text" name="name" placeholder="What's your Idea?" />
+			<textarea name="idea_body" placeholder="Tell us all about your idea"></textarea>
+			<input type="submit" value="Tell the world about it!" />
+		</form>
+		<% } %>
 	</div>
 </div>
 
