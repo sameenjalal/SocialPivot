@@ -4,7 +4,6 @@ $(function() {
 	var tog_button = $('#comment_box_button');
 	var open = false;
 
-	$('.btn').button();
 	comment_div.hide();
 	tog_button.on("click", function() {
 		console.log( $(this) );
@@ -16,4 +15,6 @@ $(function() {
 			open = false;
 		}
 	});
+
+	$('#comment_div').hide();
 });
