@@ -7,14 +7,13 @@ $(function() {
 	$('.btn').button();
 	comment_div.hide();
 	tog_button.on("click", function() {
+		console.log( $(this) );
 		if( open === false ) {
-			tog_button.attr( "value", "Show Comment Box" );
 			comment_div.slideToggle();
 			open = true;
 		} else {
-			tog_button.attr( "value", "Hide Comment Box" );
 			comment_div.slideToggle();
 			open = false;
 		}
 	});
-}
+});
