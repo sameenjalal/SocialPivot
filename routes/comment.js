@@ -24,49 +24,44 @@ module.exports = {
 						data: err
 					};
 					res.send( response );
-				} else if( user !== null ) {
+				} else if( user === null ) {
 					response = {
 						status: "Failure",
 						data: user
 					};
 					res.send( response );
 				} else {
-					my_user = user;
+					Idea.findOne( { "_id": new ObjectId( req.body.idea_id ) }, function( err, idea ) {
+						if( err ){
+							response = {
+								status: "Error",
+								data: err
+							};
+							res.send( response );
+						} else if( idea !== null ) {
+							response = {
+								status: "Failure",
+								data: idea
+							};
+							res.send( response );
+						} else {
+							var newComment = new Comment({
+								'user': user,
+								'idea': idea,
+								'rating': req.body.rating,
+								'text': req.body.text,
+								'timestamp': Date.now()
+							});
+							newComment.save();
+							response = {
+								status: "Success",
+								data: req.body.idea_id
+							};
+							res.send( response );
+						}
+					});
 				}
 			});
-
-			var my_idea;
-			Idea.findOne( { "_id": new ObjectId( req.body.idea_id ) }, function( err, idea ) {
-				if( err ){
-					response = {
-						status: "Error",
-						data: err
-					};
-					res.send( response );
-				} else if( idea !== null ) {
-					response = {
-						status: "Failure",
-						data: idea
-					};
-					res.send( response );
-				} else {
-					my_idea = idea;
-				}
-			});
-
-			var newComment = new Comment({
-				'user': my_user,
-				'idea': my_idea,
-				'rating': req.body.rating,
-				'text': req.body.text,
-				'timestamp': Date.now()
-			});
-			newComment.save();
-			response = {
-				status: "Success",
-				data: "Just created a comment"
-			};
-			res.send( response );
 		},
 	
 	

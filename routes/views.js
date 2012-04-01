@@ -62,6 +62,47 @@ module.exports = {
 			});
 		},
 
+	submitComment:
+		function(req, res) {
+			var post_data = "";
+			req.body.user_id = req.session.user.id;
+			for( var key in req.body) {
+				if(req.body.hasOwnProperty(key)) {
+					post_data += key + "=" + req.body[key] + "&";
+				}
+			}
+			post_data = post_data.slice(0, post_data.length-1);
+			var post_options = {
+				host: 'localhost',
+				port: '4242',
+				path: '/create_comment',
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'Content-Length': post_data.length
+				}
+			};
+			var post_request = http.request(post_options, function(commentRes) {
+				commentRes.setEncoding('utf8');
+				var respData = "";
+				commentRes.on('data', function(chunk) {
+					respData += chunk;
+				});
+				commentRes.on('end', function() {
+					var commentData = JSON.parse(respData);
+					if(commentData.status === "Success") {
+						res.redirect("/idea/"+commentData.data);
+					} else {
+						res.redirect("/feed");
+					}
+				});
+			});
+
+			post_request.write(post_data);
+			post_request.end();
+		},
+
+
 	createIdea:
 		function(req, res) {
 			if(req.query.prev) {
