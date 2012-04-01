@@ -68,7 +68,7 @@ module.exports = {
 					var userData = JSON.parse(respData);
 					if(userData.status === "Success") {
 						req.session.user = {
-							_id: userData.data._id,
+							id: userData.data._id,
 							name: userData.data.name
 						};
 						res.redirect("/feed");

@@ -38,7 +38,7 @@ module.exports = {
 								data: err
 							};
 							res.send( response );
-						} else if( idea !== null ) {
+						} else if( idea === null ) {
 							response = {
 								status: "Failure",
 								data: idea
