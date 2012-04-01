@@ -4,7 +4,15 @@ var Idea = require("../models/ideaModel.js"),
 	ObjectId = mongoose.Types.ObjectId;
 
 module.exports = {
-	
+
+
+	/* creates and stores Idea thru post
+	 * post params:
+	 *  name: String
+	 *  owner: userID
+	 *  prev: ideaID
+	 *  idea: Stringified Object
+	 */
 	create :
 		function(req, res) {
 			var response;
