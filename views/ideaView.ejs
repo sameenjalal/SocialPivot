@@ -1,1 +1,27 @@
 <%- partial('header.ejs', {session: session}) %>
+
+<!-- I have: idea (idea obj), comments (comments obj) -->
+<div style="margin-top: 80px;" class="container">
+	<a href="/idea/create_idea"><h1 style="margin-bottom: 10px;" >Create a new fantastic Idea!</h1></a>
+	<div class="row-fluid">
+		<div class="span4">
+			<%= idea.name %> by: <a href="/profile/<%= idea.owner.username %>" ><%= idea.owner.username %></a>
+		</div>
+		<div class="span8">
+			<%= idea.idea_body %> created: <%= idea.timestamp %>
+		</div>
+	</div>
+	<% for( var i = 0 ; i < comments.length ; i++ ) { %>
+		<div class="row-fluid">
+			<div class="span10">
+				<%= comments[i].text %> by: <a href="<%= comments[i].user.username %>"><%= comments[i].user.username %></a>
+			</div>
+			<div class="span2">
+				<%= comments[i].rating %>
+			</div>
+		</div>
+	<% } %>
+</div>
+
+
+<%- partial('footer.ejs') %>
