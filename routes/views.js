@@ -78,7 +78,8 @@ module.exports = {
 				});
 			} else {
 				res.render('createIdea.ejs', {
-					session: loginStatus(req)
+					session: loginStatus(req),
+					prev: undefined
 				});
 			}
 		},
@@ -86,7 +87,7 @@ module.exports = {
 	saveIdea:
 		function(req, res) {
 			var post_data = "";
-			req.body.owner = req.session.user.id;
+			req.body.owner = req.session.user._id;
 			for(key in req.body) {
 				if(req.body.hasOwnProperty(key)) {
 					post_data += key + "=" + req.body[key] + "&";
@@ -111,7 +112,6 @@ module.exports = {
 		  		});
 		  		ideaRes.on('end', function() {
 		  			var ideaData = JSON.parse(respData);
-		  			console.log()
 		  			if(ideaData.status === "Success") {
 		  				res.redirect("/idea/"+ideaData.data);
 		  			} else {
