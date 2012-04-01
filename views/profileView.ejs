@@ -1,4 +1,5 @@
 <%- partial('header.ejs', {session: session}) %>
+
 <div style="margin-top: 80px;" class="container">
 	<h1 style="margin-bottom: 10px;">Welcome to <%= user.username %>'s Profile!</h1>
 	<div class="well">
@@ -16,16 +17,15 @@
 					<span>My comment: <%= recent[i].text %></span>
 				<% } else { %>
 					<!-- This is an idea and I have: idea_body, name, timestamp -->
-					<span><a href="/idea/<%=recent[i].name%>"><%= recent[i].name %></a> created: <%= recent[i].timestamp %></span>
+					<span><a href="/idea/<%=recent[i].name%>"><%= recent[i].idea_body %></a> created: <%= recent[i].timestamp %></span>
 					<span><%= recent[i].idea_body %></span>
 					<% if( recent[i].prev ) { %>
-						<span>Pivoted from <a href="/idea/<%=recent[i].prev.name%>"><%=recent[i].prev.name%></a> created by:<a href="/profile/<%=recent[i].prev.owner.username%>"><%= recent[i].prev.owner.username %></a></span>
+						<span>Pivoted from <a href="/idea/<%=recent[i].prev[0].name%>"><%=recent[i].prev[0].name%></a> created by:<a href="/profile/<%=recent[i].prev[0].owner[0].username%>"><%= recent[i].prev[0].owner[0].username %></a></span>
 					<% } %>
 				<% } %>
 			</div>
 		<% } %>
 	</div>
 </div>
-
 
 <%- partial('footer.ejs') %>

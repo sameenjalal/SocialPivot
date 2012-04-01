@@ -261,7 +261,6 @@ module.exports = {
 			
 			/* get user data */
 			User.findOne({ _id : new ObjectId(req.params.userId)}, function(err, foundUser){
-				console.log(foundUser);
 				if(err){
 					internalError(res, err);
 				}else if(foundUser === null){
@@ -270,7 +269,6 @@ module.exports = {
 				}else{
 					/* get ideas made by user */
 					Idea.find({'owner._id': foundUser._id}, function(err, foundIdeas){
-						console.log(foundIdeas);
 						if(err){
 							internalError(res, err);
 						}else{
@@ -288,7 +286,6 @@ module.exports = {
 									activity.push(foundIdeas);
 									activity.push(foundComments);
 									activity.sort(sortChrono);
-
 									/* render user profile */
 									res.render('profileView.ejs', {
 										user : foundUser,
