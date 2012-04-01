@@ -8,12 +8,14 @@
 			<input type="text" value="<%= prev.name %>"name="name" placeholder="What's your Idea?" />
 			<textarea name="idea_body" placeholder="Tell us all about your idea"><%= prev.idea_body %></textarea>
 			<input type="hidden" value="<%= prev._id %>" name="prev" />
+			<input type="text" name="tags" placeholder="Enter buzzwords here!" />
 			<input type="submit" value="Tell the world about it!" />
 		</form>
 		<% } else { %>
 		<form id="createIdea" class=".form-vertical" action="/saveIdea" method="post">
 			<input type="text" name="name" placeholder="What's your Idea?" />
 			<textarea name="idea_body" placeholder="Tell us all about your idea"></textarea>
+			<input type="text" name="tags" placeholder="Enter buzzwords here!" />
 			<input type="submit" value="Tell the world about it!" />
 		</form>
 		<% } %>
