@@ -293,79 +293,85 @@ module.exports = {
 			var session = loginStatus(req);
 			if(!session.logged_in) {
 				res.redirect("/");
+			} else {
+				/* find all the ideas */
+				Idea.find({}, function(err, ideas){
+					if(err){
+						internalServerError(res, err);
+					} else{
+						/* find all the comments */
+						Comment.find({}, function(err, comments){
+							if(err){
+								internalServerError(res, ideas);
+							} else {
+								
+								/* sort and render */
+								var activity = ideas.concat(comments);
+								//activity.sort(sortChrono);
+								activity.slice(0, 20);
+								var session = loginStatus(req);
+								res.render('feed.ejs', {
+									activity: activity,
+									session: session
+								});
+							}
+						});
+					}
+				});
 			}
-			/* find all the ideas */
-			Idea.find({}, function(err, ideas){
-				if(err){
-					internalServerError(res, err);
-				} else{
-					/* find all the comments */
-					Comment.find({}, function(err, comments){
-						if(err){
-							internalServerError(res, ideas);
-						} else {
-							
-							/* sort and render */
-							var activity = ideas.concat(comments);
-							//activity.sort(sortChrono);
-							activity.slice(0, 20);
-							var session = loginStatus(req);
-							res.render('feed.ejs', {
-								activity: activity,
-								session: session
-							});
-						}
-					});
-				}
-			});
 		},
 
 
 	/* renders the profile for a :username passed as a param */
 	profileView : 
 		function(req, res){
+			var session = loginStatus(req);
+			if(!session.logged_in) {
+				res.redirect("/");
+			} else {
 			
-			/* get user data */
-			User.findOne({ _id : new ObjectId(req.params.userId)}, function(err, foundUser){
-				if(err){
-					internalError(res, err);
-				}else if(foundUser === null){
-					res.writeHead(404);
-					res.end('Unknown User');
-				}else{
-					/* get ideas made by user */
-					Idea.find({'owner._id': foundUser._id}, function(err, foundIdeas){
-						if(err){
-							internalError(res, err);
-						}else{
+				/* get user data */
+				User.findOne({ _id : new ObjectId(req.params.userId)}, function(err, foundUser){
+					if(err){
+						internalError(res, err);
+					}else if(foundUser === null){
+						res.writeHead(404);
+						res.end('Unknown User');
+					}else{
+						/* get ideas made by user */
+						Idea.find({'owner._id': foundUser._id}, function(err, foundIdeas){
+							if(err){
+								internalError(res, err);
+							}else{
 
-							/* get comments written by user */
-							Comment.find({
-								'owner._id': foundUser._id
-							}, function(err, foundComments){
-								if(err){
-									internalError(res, err);
-								}else{
-									
-									/* sort the top 10 recent activity */
-									var activity = [];
-									activity.push(foundIdeas);
-									activity.push(foundComments);
-									activity.sort(sortChrono);
-									/* render user profile */
-									res.render('profileView.ejs', {
-										user : foundUser,
-										ideas : foundIdeas.sort(sortChrono),
-										comments : foundComments.sort(sortChrono),
-										recent : activity.slice(0, 10),
-										session: loginStatus(req)
-									});
-								}
-							});
-						}
-					});
-				}
-			});
+								/* get comments written by user */
+								Comment.find({
+									'owner._id': foundUser._id
+								}, function(err, foundComments){
+									if(err){
+										internalError(res, err);
+									}else{
+										
+										/* sort the top 10 recent activity */
+										var activity = [];
+										activity.push(foundIdeas);
+										activity.push(foundComments);
+										activity.sort(sortChrono);
+										/* render user profile */
+										res.render('profileView.ejs', {
+											user : foundUser,
+											ideas : foundIdeas.sort(sortChrono),
+											comments : foundComments.sort(sortChrono),
+											recent : activity.slice(0, 10),
+											session: session
+										});
+									}
+								});
+							}
+						});
+					}
+				});
+			}
 		}
 
 };
