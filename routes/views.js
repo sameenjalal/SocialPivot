@@ -58,7 +58,7 @@ module.exports = {
 					
 					/* find the comments */
 					Comment.find({
-						idea : req.params.ideaID
+						idea._id: new ObjectId(req.params.ideaID)
 					}, function(err, comments){
 						if(err){
 							internalServerError(res, err);
@@ -171,7 +171,7 @@ module.exports = {
 			
 			/* get user data */
 			User.findOne({
-				name : req.params.username
+				_id : new ObjectId(req.params.userId)
 			}, function(err, foundUser){
 				if(err){
 					internalError(res, err);

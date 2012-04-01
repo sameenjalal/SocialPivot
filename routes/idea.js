@@ -6,7 +6,7 @@ var Idea = require("../models/ideaModel.js"),
 module.exports = {
 	
 	create :
-		function(req, res){
+		function(req, res) {
 			var response;
 			var newIdea;
 			if(req.body.owner) {

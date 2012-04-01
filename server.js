@@ -57,7 +57,7 @@ app.get("/destroy_:model?", function(req, res) {
 });
 
 /* views */
-app.get("/profile/:username", routes.views.profile);
+app.get("/profile/:userId", routes.views.profile);
 app.get("/idea/:ideaID", routes.views.idea);
 app.get("/search?", routes.views.search);
 
