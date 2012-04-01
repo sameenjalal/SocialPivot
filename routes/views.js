@@ -170,7 +170,7 @@ module.exports = {
 					var sorted_master_list = master_docs_list.sort( sortChrono );
 					/* render search */
 					res.render('searchView.ejs', {
-						search_results : sorted_master_list.slice(0, 10),
+						search_results : sorted_master_list.slice(0, 25),
 						session: loginStatus(req)
 					});
 				}
