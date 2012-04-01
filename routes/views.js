@@ -210,7 +210,8 @@ module.exports = {
 										user : foundUsers.sort(sortChrono),
 										ideas : foundIdeas.sort(sortChrono),
 										comments : foundComments.sort(sortChrono),
-										recent : activity.splice(0, 10)
+										recent : activity.splice(0, 10),
+										session: loginStatus(req)
 									});
 								}
 							});
