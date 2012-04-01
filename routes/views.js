@@ -266,14 +266,15 @@ module.exports = {
 					res.end('Unknown User');
 				}else{
 					/* get ideas made by user */
-					Idea.find({owner: foundUser._id}, function(err, foundIdeas){
+					Idea.find({'owner._id': foundUser._id}, function(err, foundIdeas){
+						console.log(foundIdeas);
 						if(err){
 							internalError(res, err);
 						}else{
 
 							/* get comments written by user */
 							Comment.find({
-								owner: foundUser._id
+								'owner._id': foundUser._id
 							}, function(err, foundComments){
 								if(err){
 									internalError(res, err);
