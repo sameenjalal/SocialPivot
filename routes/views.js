@@ -171,7 +171,7 @@ module.exports = {
 			/* ending callback */
 			var master_docs_list = [];
 			var counter = 0;
-			var numOfQueries = 4*search_terms_list.length;
+			var numOfQueries = 5*search_terms_list.length;
 			var searchCb = function(list){
 				if(counter < numOfQueries-1){
 					master_docs_list = master_docs_list.concat(list);
@@ -194,6 +194,16 @@ module.exports = {
 						internalError( res, err );
 					} else{
 						searchCb(ideas);
+					}
+				});
+			}
+
+			for(var i in search_terms_list){	
+				Idea.find({ 'tags': new RegExp(search_terms_list[i], 'i') }, function( err, tagged_ideas ){
+					if( err ){
+						internalError( res, err );
+					} else{
+						searchCb(tagged_ideas);
 					}
 				});
 			}
