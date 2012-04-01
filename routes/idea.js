@@ -59,7 +59,7 @@ module.exports = {
 							newIdea = new Idea({
 								'idea_body': req.body.idea_body,
 								'name': req.body.name,
-								'tags': req.body.tags.split("/[\s,]+/"),
+								'tags': req.body.tags.split("[\\s,]+"),
 								'timestamp': Date.now()
 							});
 							newIdea.owner.push(doc);
