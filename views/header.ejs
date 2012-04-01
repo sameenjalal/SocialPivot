@@ -4,18 +4,21 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+ 	    <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand pull-left" href="#">Social Pivot</a>
 					<% if(!session.logged_in) { %>
+						<a class="brand pull-left" href="/">Social Pivot</a>
 						<%- partial('logged-out-nav.ejs') %>
 					<% } else { %>
+						<a class="brand pull-left" href="/feed">Social Pivot</a>
 						<%- partial('logged-in-header.ejs', {'user': session.user}) %>
 					<% } %>
-					<form class="navbar-search pull-left" action="search">
+					<form class="navbar-search pull-left" action="/search" method="get">
 						<input type="text" class="search-query span2" placeholder="Search" />
 					</form>
 				</div>

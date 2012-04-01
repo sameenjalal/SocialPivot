@@ -4,6 +4,11 @@
 	width: 150px;
 }
 
-#register {
-	margin-top: 20px;
+#register input {
+	display: block;
+}
+
+#register textarea {
+	height: 180px;
+	width: 458px;
 }

@@ -54,6 +54,13 @@ module.exports = {
 			});
 		},
 
+	signup:
+		function(req, res) {
+			res.render('signup.ejs', {
+				session: loginStatus(req)
+			});
+		},
+
 
 	/* renders the idea view for a :ideaID that corrosponds to db ID */
 	ideaView :

@@ -35,5 +35,10 @@ module.exports = {
 				req.session.destroy(function() {});
 			}
 			res.redirect('/');
+		},
+
+	register:
+		function(req, res) {
+			console.log(req.body);
 		}
 };
