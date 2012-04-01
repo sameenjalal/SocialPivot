@@ -29,9 +29,9 @@ function internalError(res, err){
 
 function sortChrono(event1, event2){
 	if(event1.timestamp < event2.timestamp){
-		return 1;
-	}else if(event1.timestamp > event2.timestamp){
 		return -1;
+	}else if(event1.timestamp > event2.timestamp){
+		return 1;
 	}else{
 		return 0;
 	}
@@ -187,7 +187,6 @@ module.exports = {
 							internalServerError(res, err);
 						}else{
 							comments.sort(sortChrono);
-							
 							/* render the view */
 							res.render('ideaView.ejs', {
 								idea : idea, 
@@ -218,8 +217,11 @@ module.exports = {
 					master_docs_list = master_docs_list.concat(list);
 					counter++;
 				}else{
+					master_docs_list = master_docs_list.concat(list);
+					console.log(master_docs_list);
 					var sorted_master_list = master_docs_list.sort( sortChrono );
 					/* render search */
+					console.log(sorted_master_list.slice(0, 25));
 					res.render('searchView.ejs', {
 						search_results : sorted_master_list.slice(0, 25),
 						session: loginStatus(req)
