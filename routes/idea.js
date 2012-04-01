@@ -28,8 +28,8 @@ module.exports = {
 					} else if(doc !== null) {
 						var idea_json_object = JSON.parse( req.body.idea );
 						var idea_to_insert = {
-							tags = idea_json_object[ 'tags' ],
-							body = idea_json_object[ 'body' ]
+							tags: idea_json_object[ 'tags' ],
+							body: idea_json_object[ 'body' ]
 						};
 						if(req.body.prev) {
 							Idea.findOne({_id: new ObjectId(req.body.prev)}, function(err, doc2) {
