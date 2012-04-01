@@ -2,13 +2,27 @@
 
 <!-- I have: idea (idea obj), comments (comments obj) -->
 <div style="margin-top: 80px;" class="container">
-	<a href="/idea/create_idea"><h1 style="margin-bottom: 10px;" >Create a new fantastic Idea!</h1></a>
-	<div class="row-fluid">
+	<% if(session.user) { %>
+	<button id="pivot-button" class="btn btn-primary"><a href="/createIdea?prev=<%= idea._id%>">Pivot from this Idea!</a></button>
+	<% } else { %>
+	<p style="margin-bottom: 10px">You must be <a href="/signup">Registered</a> to Pivot from an Idea</p>
+	<% } %>
+	<div style="margin-bottom: 10px;"class="row-fluid">
 		<div class="span4">
-			<%= idea.name %> by: <a href="/profile/<%= idea.owner.username %>" ><%= idea.owner.username %></a>
+			<h2><%= idea.name %></h2>
 		</div>
-		<div class="span8">
-			<%= idea.idea_body %> created: <%= idea.timestamp %>
+	</div>
+	<div style="margin-bottom: 15px;" class="row-fluid">
+			<div class="span3">
+				<span>By: <a href="/profile/<%= idea.owner[0].username %>" ><%= idea.owner[0].username %></a></span>
+			</div>
+			<div class="span5">
+				Created: <%= idea.timestamp %>
+			</div>
+	</div>
+	<div class="row-fluid">
+		<div class="well span8">
+			<%= idea.idea_body %>
 		</div>
 	</div>
 

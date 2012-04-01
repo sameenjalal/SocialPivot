@@ -21,3 +21,11 @@
 	height: 180px;
 	width: 458px;
 }
+
+#pivot-button {
+	margin-bottom: 15px;
+}
+
+#pivot-button a {
+	color: #FFF;
+}

@@ -64,8 +64,18 @@ module.exports = {
 
 	createIdea:
 		function(req, res) {
-			if(req.body.prev) {
-
+			if(req.query.prev) {
+				Idea.findOne({_id: req.query.prev}, function(err, doc) {
+					if(err || doc === null) {
+						res.render('createIdea.ejs', {
+							session: loginStatus(req)
+						});
+					}
+					res.render('createIdea.ejs', {
+						session: loginStatus,
+						prev: doc
+					});
+				});
 			} else {
 				res.render('createIdea.ejs', {
 					session: loginStatus(req)
