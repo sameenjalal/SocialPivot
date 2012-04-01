@@ -47,7 +47,6 @@ module.exports = {
 				}
 			}
 			post_data = post_data.slice(0, post_data.length-1);
-			console.log(post_data);
 			var post_options = {
 		      host: 'localhost',
 		      port: '4242',
@@ -67,7 +66,6 @@ module.exports = {
 		  		});
 		  		userRes.on('end', function() {
 		  			var userData = JSON.parse(respData);
-		  			console.log(userData);
 		  			if(userData.status === "Success") {
 		  				req.session.user = {
 							_id: userData.data._id,
