@@ -9,12 +9,12 @@
 			   	 <div class="span4">
 			   		 <h2><a href="/idea/<%= a._id %>"><%= a.name %></a></h2>
 			   	 </div>
-			   	 <div style="margin-top: 15px;" class="span3">
+			   	 <div style="margin-top: 13px;" class="span3">
 			   	 	 <span>Created by: <a href="/profile/<%= a.owner[0]._id %>"><%= a.owner[0].username %></a></span>
 			   	 </div>
 			   	 <% if(a.prev.length > 0) { %>
-			   	 <div class="span3">
-			   	 	<span>Pivoted From: <a href="/idea/<%= a.prev[0]._id %>"><%= a.prev[0].name %></a></span>
+			   	 <div style="margin-top: 13px;" class="span3">
+			   	 	<span>Pivoted From: <a href="/idea/<%= a.prev[0].owner[0]._id %>"><%= a.prev[0].owner[0].username %></a></span>
 			   	 </div>
 			   	 <% } %>
 			</div>
