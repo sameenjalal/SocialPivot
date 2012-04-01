@@ -71,7 +71,7 @@ module.exports = {
 		  			if(userData.status === "Success") {
 		  				req.session.user = {
 							_id: userData.data._id,
-							name: userData.data.username
+							name: userData.data.name
 						};
 		  				res.redirect("/feed");
 		  			} else if(userData.status === "Failure" || userData.status === "Error") {

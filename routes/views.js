@@ -175,6 +175,8 @@ module.exports = {
 							activity.push(comments);
 							activity.sort(sortChrono);
 							activity.splice(0, 20);
+							var session = loginStatus(req);
+							console.log(session);
 							res.render('feed.ejs', {
 								activity: activity,
 								session: loginStatus(req)
