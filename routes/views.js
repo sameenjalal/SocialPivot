@@ -243,6 +243,7 @@ module.exports = {
 			
 			/* get user data */
 			User.findOne({ _id : new ObjectId(req.params.userId)}, function(err, foundUser){
+				console.log(foundUser);
 				if(err){
 					internalError(res, err);
 				}else if(foundUser === null){
