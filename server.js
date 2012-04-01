@@ -63,7 +63,6 @@ app.get("/search?", routes.views.search);
 
 /* hello world testing */
 app.get('/', function(req, res){
-	res.writeHead(500);
 	res.send('hello world');
 });
 
