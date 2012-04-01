@@ -76,7 +76,7 @@ app.post("/register", routes.authentication.register);
 /* views */
 app.get("/profile/:userId", routes.views.profileView);
 app.get("/idea/:ideaID", routes.views.ideaView);
-app.get("/search?", routes.views.searchView);
+app.get("/search", routes.views.searchView);
 app.get("/feed", routes.views.feedView);
 app.get("/signup", routes.views.signup);
 app.get("/createIdea", routes.views.createIdea);
