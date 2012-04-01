@@ -18,7 +18,7 @@
 					<!-- This is an idea and I have: idea_body, name, timestamp -->
 					<p><a href="/idea/<%= recent[i].name %>"><%= recent[i].name %></a> created: <%= recent[i].timestamp %></p>
 					<p><%= recent[i].idea_body %></p>
-					<% if( recent[i].prev !== null ) { %>
+					<% if( recent[i].prev ) { %>
 						<p>Pivoted from <a href="/idea/<%= recent[i].prev.name %>"><%= recent[i].prev.name %></a> </p>
 						<p>Created by:<a href="/profile/<%= recent[i].prev.owner.username %>"><%= recent[i].prev.owner.username %></a></p>
 					<% } %>
