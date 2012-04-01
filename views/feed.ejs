@@ -1,35 +1,6 @@
 <%- partial('header.ejs', {session: session}) %>
 <div class="container">
 	<h1>What's New</h1>
-	<% for(var i=0; i<activity.length; i++) { %>
-		<div class="well">
-			<% var a = activity[i]; %>
-			<% if(a.owner) { %>
-			<div class="row">
-			   	 <div class="span6">
-			   		 <h2><a href="/idea/<%= a._id %>"><%= a.name %></a></h2>
-			   	 </div>
-			   	 <div class="span3">
-			   	 	 <span>Created by: <a href="/profile/<%= a.owner[0]._id %>"><%= a.owner[0].username %></a></span>
-			   	 </div>
-			   	 <% if(a.prev.length > 0) { %>
-			   	 <div class="span3">
-			   	 	<span>Pivoted From: <a href="/idea/<%= a.prev[0]._id %>"><%= a.prev[0].name %></a></span>
-			   	 </div>
-			   	 <% } %>
-			</div>
-			<div class="row">
-				<span><%= a.idea.text %><span>
-			</div>
-			<% } else if(a.comment) { %>
-			<div class="row">
-				<p><a href="/profile/<%= a.user[0]._id %>"><%= a.user[0].username %></a> 
-				just commented on <a href="/idea/<%= a.idea[0]._id %>"><%= a.idea[0].idea.name %></a> saying: <%= a.comment %>
-				</p>
-			</div>
-			<% } %>
-		</div>
-	<% } %> 
 </div>
 
 <%- partial('footer.ejs') %>
