@@ -19,7 +19,9 @@
 			   	 <% } %>
 			</div>
 			<div class="row">
-				<span><%= a.idea.text %><span>
+				<% if(typeof a.idea !== 'undefined' && a.idea.length > 0){ %>
+					<span><%= a.idea[0].text %><span>
+				<%}%>
 			</div>
 			<% } else if(a.comment) { %>
 			<div class="row">
