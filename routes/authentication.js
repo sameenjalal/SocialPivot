@@ -33,7 +33,7 @@ module.exports = {
 	logout:
 		function(req, res) {
 			if(req.session) {
-				req.session.destroy(function() {});
+				req.session.destroy(function() {}); 
 			}
 			res.redirect('/');
 		},

@@ -69,7 +69,7 @@ app.get("/destroy_:model?", function(req, res) {
 });
 
 /* Login/Logout/Register */
-app.get("/login", routes.authentication.login);
+app.post("/login", routes.authentication.login);
 app.get("/logout", routes.authentication.logout);
 app.post("/register", routes.authentication.register);
 
